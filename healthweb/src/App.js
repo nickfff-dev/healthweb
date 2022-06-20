@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './Home';
-import {Container, Row, Col} from "react-bootstrap"
+import {Container} from "react-bootstrap"
 
 function App() {
   return (

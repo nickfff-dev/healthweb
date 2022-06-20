@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import headim from "./hf3.svg"
 
 
@@ -16,7 +16,7 @@ function Intro() {
       Only files inside the `public` folder can be referenced from the HTML.</p>
       </Container>
       <Container>
-      <img className="img-fluid" src={headim}   />
+      <img className="img-fluid" src={headim} alt="titleimage"  />
       </Container>
 
       
