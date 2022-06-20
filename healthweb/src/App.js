@@ -1,12 +1,16 @@
 import React from 'react';
 import Home from './Home';
-import {Container} from "react-bootstrap"
+import { Container, Row } from "react-bootstrap"
+import "./App.css"
 
 function App() {
   return (
-    <Container>
+    <>
+   
+      
       <Home/>
-    </Container>
+      
+    </>
   );
 }
 

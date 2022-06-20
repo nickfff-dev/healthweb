@@ -1,16 +1,16 @@
 import React from 'react';
-import { Container } from "react-bootstrap"
+import { Container, Col } from "react-bootstrap"
 import Header from './Header'
 import Intro from './Intro'
 
 
 function Home () {
   return (
-    <Container>
+    <Col>
       <Header />
       <Intro/>
   
-    </Container>
+    </Col>
   )
 }
 
