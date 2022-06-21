@@ -1,8 +1,11 @@
 *, *:before, *:after {
-  box-sizing: border-box
+  box-sizing: border-box;
+
 }
 
 body{
+
+ 
 padding-left: 20px;
 padding-right: 20px;
   margin: 0 auto;

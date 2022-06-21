@@ -5,13 +5,7 @@ import {Search} from 'react-bootstrap-icons'
 
 function Header() { 
   // create a multi nested navitems
-  const handleSelect = (eventKey) => {
 
-    document.getElementById("yote").style.width = "1367px";
-    document.getElementById("yote").style.height = "auto";
-    
-  }
-    
 
   return (
     <div className="barbg px-3">
@@ -19,7 +13,7 @@ function Header() {
       <Navbar.Brand href="#home"   className="pe-5">HealthWeb</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav  className="me-auto  my-2 my-lg-0" onSelect={handleSelect} >
+        <Nav  className="me-auto  my-2 my-lg-0"  >
             <NavDropdown title="Health Condition" id="basic-nav-dropdown2" className="pe-5" >
               <NavDropdown.Item eventKey="4.2"  >
                 <div className="d-flex align-items-top justify-content-start" id="yote">
