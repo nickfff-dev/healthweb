@@ -6,49 +6,53 @@ import "./Explore.css";
 
 function Explore() {
   return (
-    <>
-      <div className=" mt-5 d-flex align-items-center justify-content-between">
-        <h2>EXPLORE BY</h2>
+    <Container className="explore p-5">
+      <div className="d-flex align-items-center justify-content-between">
+        <h2>EXPLORE TOPICS</h2>
 
         <h2>
-          ALL CATEGORIES <ArrowRightCircle className="arrow fal" />
+          ALL TOPICS <ArrowRightCircle className="arrow fal" />
         </h2>
       </div>
       <hr />
 
-      <div className="container ">
-        <div className="wrapper ">
-          <div className="card Nutri">
-            <ArrowRightCircle className="arrow fal" />
-          </div>
-          <h3>Nutrition</h3>
+      <div className="header">
+    <h1>Science, and Integrity</h1>
+    <h1>Powered by Technology</h1>
+
+    <p>Our Artificial Intelligence powered tools use millions of project data points
+      to ensure that your health is on point</p>
+  </div>
+  <div className="row1-ontainer2">
+    <div className="box box-down cyan">
+      <h2>Nutrition</h2>
+      <p>Food and Eating Habits</p>
+      <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt=""/>
+    </div>
+
+    <div className="box red">
+      <h2>Mental Health</h2>
+      <p>Counselling Yoga Therapy</p>
+      <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt=""/>
+    </div>
+
+    <div className="box box-down blue">
+      <h2>Well Being</h2>
+      <p>Fitness Sleep</p>
+      <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt=""/>
         </div>
-        <div className="wrapper">
-          <div className="card sleep">
-            <ArrowRightCircle className="arrow fal" />
-          </div>
-          <h3>Sleep</h3>
-        </div>
-        <div className="wrapper">
-          <div className="card mental">
-            <ArrowRightCircle className="arrow fal" />
-          </div>
-          <h3>Mental Health</h3>
-        </div>
-        <div className="wrapper">
-          <div className="card fitness">
-            <ArrowRightCircle className="arrow fal" />
-          </div>
-          <h3>Fitness</h3>
-        </div>
-        <div className="wrapper">
-          <div className="card review">
-            <ArrowRightCircle className="arrow fal" />
-          </div>
-          <h3>Product Reviews</h3>
-        </div>
+        
       </div>
-    </>
+      
+  <div className="row2-ontainer2">
+    <div className="box orange">
+      <h2>Product Reviews</h2>
+      <p>Regularly evaluates quality products</p>
+      <img src="https://assets.codepen.io/2301174/icon-karma.svg" alt=""/>
+    </div>
+      </div>
+      
+    </Container>
   );
 }
 

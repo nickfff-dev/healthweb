@@ -6,7 +6,7 @@
 html{
 
 
-  
+  overflow-x: hidden;
 margin: 0 auto;}
 
 
@@ -31,7 +31,7 @@ width: 100vw;
   
 }
 .brand{
-  font-size:2.7rem !important;
+  font-size:2.6rem !important;
   font-family: "Baloo 2", sans-serif !important;
   font-weight: bold;
   color:#1F3F68 !important;
@@ -110,3 +110,9 @@ background: #1F3F68;
   width: 50vw;
   height: 30vh;
 } */
+
+
+.explore{
+  color:#1F3F68;
+  background-color: rgba(152, 195, 232, 0.4) ;
+}

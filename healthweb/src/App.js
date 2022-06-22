@@ -7,15 +7,16 @@ import Header from './Header';
 
 function App() {
   return (
-    <>
-      <div className="band"><Header /></div>
-       
+    <div>
+      
+    <Header />
+    
    <Container>
       
       <Home />
       </Container>
       
-    </>
+    </div>
   );
 }
 
