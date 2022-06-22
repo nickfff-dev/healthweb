@@ -8,9 +8,9 @@ import headim from "./illustration.svg"
 function Intro() {
   return (
 
-    <div className="d-flex align-items-center intro justify-content-center">
+    <div className="mb-5 d-flex align-items-center intro justify-content-center">
 
-      <Container>
+      <Col>
       <h1 className="mb-4 py-4 maintxt">Health & Science <br/> Matter to us</h1>
        
         <p className="paratxt mb-4">Notice the use of %PUBLIC_URL% in the tags above.
@@ -19,10 +19,10 @@ function Intro() {
         <Button className="btn readmore">
           Read More
         </Button>
-      </Container>
-      <Container>
+      </Col>
+      <Col>
       <img className="img-fluid mine" src={headim} width="887.25px" height="679.31px" alt="titleimage"  />
-        </Container>
+        </Col>
       
       
       </div>

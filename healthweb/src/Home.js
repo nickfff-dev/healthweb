@@ -1,14 +1,19 @@
 import React from 'react';
-import { Container, Col } from "react-bootstrap"
+import { Container, Col, Row } from "react-bootstrap"
 import Header from './Header'
 import Intro from './Intro'
+import Explore from './Explore';
+import BlogPage2 from './BlogPage2';
 
 
 function Home () {
   return (
     <Col>
-      <Header />
-      <Intro/>
+    
+      <Intro />
+      <Explore />
+      <BlogPage2 />
+
   
     </Col>
   )
