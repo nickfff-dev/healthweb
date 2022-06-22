@@ -46,7 +46,7 @@ const QueryType = new GraphQLObjectType({
       
       resolve: (root, args) => {
         if (args.id) { 
-          return find(Posts, { id: args.id });
+          return find(Posts, { id: args.id });  
         }
         if (Object.keys(args).length) {
           return filter(Posts, args);
@@ -54,7 +54,8 @@ const QueryType = new GraphQLObjectType({
         return Posts;
       },
     },
-  }),
+  })
+
 });
 
 
@@ -69,7 +70,7 @@ const MutationType = new GraphQLObjectType({
         body: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: new GraphQLNonNull(GraphQLBoolean) },
         author: { type: new GraphQLNonNull(GraphQLString) },
-        category: { type: new GraphQLNonNull(GraphQLString) },
+        category: { type: new GraphQLNonNull(GraphQLString) },  
         trending: { type: new GraphQLNonNull(GraphQLBoolean) },
         featured: { type: new GraphQLNonNull(GraphQLBoolean) },
         createdAt: { type: new GraphQLNonNull(GraphQLString) },
@@ -94,6 +95,31 @@ const MutationType = new GraphQLObjectType({
         Posts.push(post);
         return post;
       }
+    },
+    updatePost: {
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLInt) },
+        published: { type: GraphQLBoolean },
+        trending: { type: GraphQLBoolean },
+        featured: { type: GraphQLBoolean },
+
+
+      },
+      type: PostType,
+      resolve: (root, args) => { 
+        const post = find(Posts, { id: args.id });
+        if (args.hasOwnProperty("published")) {
+          post.published = args.published;
+        }
+        if (args.hasOwnProperty("trending")) { 
+          post.trending = args.trending;
+        }
+        if (args.hasOwnProperty("featured")) { 
+          post.featured = args.featured;
+        }
+        return post;
+
+      }
     }
   })
 })
@@ -106,3 +132,48 @@ const mySchema = new GraphQLSchema({
 });
 
 module.exports = mySchema;
+
+
+//  mutation {
+//   createPost(title: "nasir", author: "tuma", category: "kitu", featured: true, createdAt: "hapa", trending: true, published: true, body: "kule") {
+//     id
+//     title
+//     author
+//     category
+//     featured
+//     trending
+//     createdAt
+//     published
+//   }
+// }
+
+// mutation {
+//   updatePost( id:2, featured: false, trending: false, published: false) {
+//     id
+//     title
+//     author
+//     category
+//     featured
+//     trending
+//     createdAt
+//     published
+//   }
+// }
+// var myHeaders = new Headers();
+// myHeaders.append("Content-Type", "application/json");
+
+// var graphql = JSON.stringify({
+//   query: "mutation {\r\n  updatePost( id:2, featured: true, trending: true, published: true) {\r\n    id\r\n    title\r\n    author\r\n    category\r\n    featured\r\n    trending\r\n    createdAt\r\n    published\r\n  }\r\n}\r\n",
+//   variables: {}
+// })
+// var requestOptions = {
+//   method: 'POST',
+//   headers: myHeaders,
+//   body: graphql,
+//   redirect: 'follow'
+// };
+
+// fetch("http://localhost:5000/graphql", requestOptions)
+//   .then(response => response.text())
+//   .then(result => console.log(result))
+//   .catch(error => console.log('error', error));
