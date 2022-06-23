@@ -1,17 +1,14 @@
+import React from "react"
+import { Container, Button, Col, Row } from "react-bootstrap"
 import React from "react";
 import { Nav, NavItem, NavLink, Offcanvas,Navbar, OffcanvasBody, OffcanvasHeader, Button } from "react-bootstrap";
 import{ArrowRightCircle,AwardFill, HospitalFill, HeartPulseFill, JournalMedical, BasketFill, List} from 'react-bootstrap-icons';
 
 
 
-
-
-function SideBar() {
+function Blog() {
   return (
-    <>
-     
-
-      <Offcanvas placement="start" show={true} scroll={true} backdrop={false}>
+    <Offcanvas placement="start" show={true} scroll={true} backdrop={false}>
         <Offcanvas.Header >
           <Offcanvas.Title><div className="d-flex align-items-baseline"><h3 className="px-2">Categories</h3><ArrowRightCircle /></div> </Offcanvas.Title>
           
@@ -47,11 +44,7 @@ function SideBar() {
             </Nav>
         </Offcanvas.Body>
       </Offcanvas>
-    
-  
-</>
   )
- }
+}
 
-
- export default SideBar;
+export default Blog;

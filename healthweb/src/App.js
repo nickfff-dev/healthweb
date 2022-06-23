@@ -4,19 +4,21 @@ import { Container, Row } from "react-bootstrap"
 import "./App.css"
 import BlogPage2 from './BlogPage2';
 import Header from './Header';
+import{BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+   
       
-    <Header />
+    <Router>
+      <Routes>
+  
+      
+       <Route exact path="/" element={<Home/>}/> 
+        </Routes>
     
-   <Container>
-      
-      <Home />
-      </Container>
-      
-    </div>
+      </Router>
+   
   );
 }
 

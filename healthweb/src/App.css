@@ -117,9 +117,12 @@ background: #1F3F68;
   background-color: rgba(152, 195, 232, 0.4) ;
 }
 
+
 .offcanvas-header{
+
   background-color: #1F3F68;
   color: white;
+  font-size: 1.9rem;
   
   font-weight: bold;
  
@@ -129,8 +132,13 @@ background: #1F3F68;
   background-color: #1F3F68;
   color: white ;
 
+ clear: both;
+ overflow: hidden;
+
 }
 
 .offcanvas-body .nav-item .nav-link{
   color: white;
+
 }
+

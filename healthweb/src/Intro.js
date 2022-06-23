@@ -7,8 +7,8 @@ import headim from "./illustration.svg"
 
 function Intro() {
   return (
-
-    <div className="mb-5 d-flex align-items-center intro justify-content-center">
+    <Col>
+    <div className="col-md-12 mb-5 d-flex align-items-center intro justify-content-center">
 
       <Col>
       <h1 className="mb-4 py-4 maintxt">Health & Science <br/> Matter to us</h1>
@@ -27,6 +27,7 @@ function Intro() {
       
       </div>
         
+    </Col>
      
       
   )
