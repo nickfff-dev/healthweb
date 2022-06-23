@@ -1,17 +1,24 @@
-const express = require( 'express');
+const express = require('express');
 
 const graphqlHTTP = require('express-graphql').graphqlHTTP;
 
-const mySchema  = require('./models/postschema');
+const mySchema = require('./models/postschema');
+const mongoose = require('mongoose');
+
 const session = require('express-session');
 
 
 
 
 
+const MONGO_URI ="mongodb+srv://nasir:5pcEwh7TQRtxQSK@cluster0.74zah.mongodb.net/blog?retryWrites=true&w=majority"
 
 
 
+
+mongoose.connect(MONGO_URI, () => {
+  console.log("connected to mongo db");
+});
 
 
 

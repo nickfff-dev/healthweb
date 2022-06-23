@@ -1,6 +1,7 @@
-const find = require("lodash/find");
-const filter = require("lodash/filter");
-const Posts = require("../data/blog");
+const mongoose = require('mongoose');
+const Post = require("./postmodel");
+
+
 const {
   GraphQLInt,
   GraphQLBoolean,
@@ -14,7 +15,7 @@ const {
 const PostType = new GraphQLObjectType({
   name: "Post",
   fields: () => ({
-    id: { type: GraphQLInt },
+    _id: { type: GraphQLString },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
     published: { type: GraphQLBoolean },
@@ -22,6 +23,7 @@ const PostType = new GraphQLObjectType({
     category: { type: GraphQLString },
     trending: { type: GraphQLBoolean },
     featured: { type: GraphQLBoolean },
+    coverImage: { type: GraphQLString },
     createdAt: { type: GraphQLString },
   }),
 });
@@ -31,10 +33,11 @@ const QueryType = new GraphQLObjectType({
   fields: () => ({
     posts: {
       args: {
-        id: { type: GraphQLInt },
+        _id: { type: GraphQLString },
         title: { type: GraphQLString },
         body: { type: GraphQLString },
         published: { type: GraphQLBoolean },
+        updateAt: { type: GraphQLString },
         author: { type: GraphQLString },
         category: { type: GraphQLString },
         trending: {type: GraphQLBoolean},
@@ -45,15 +48,29 @@ const QueryType = new GraphQLObjectType({
       type: new GraphQLList(PostType),
       
       resolve: (root, args) => {
-        if (args.id) { 
-          return find(Posts, { id: args.id });  
+        const posts = Post.find(args).exec();
+        if (!posts) {
+          throw new Error("Error");
         }
-        if (Object.keys(args).length) {
-          return filter(Posts, args);
-        }
-        return Posts;
+        return posts;
       },
     },
+    singlepost: {
+      args: {
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        
+      },
+      type: PostType,
+      resolve: (root, args) => { 
+        const post = Post.findOne(args).exec();
+        if (!post) {
+          throw new Error("Error");
+        }
+        return post;
+        
+      }
+    },
+    
   })
 
 });
@@ -66,6 +83,7 @@ const MutationType = new GraphQLObjectType({
     createPost: {
      
       args: {
+        _id: { type: GraphQLString, defaultValue: new mongoose.Types.ObjectId().toHexString()  },
         title: { type: new GraphQLNonNull(GraphQLString) },
         body: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: new GraphQLNonNull(GraphQLBoolean) },
@@ -74,50 +92,69 @@ const MutationType = new GraphQLObjectType({
         trending: { type: new GraphQLNonNull(GraphQLBoolean) },
         featured: { type: new GraphQLNonNull(GraphQLBoolean) },
         createdAt: { type: new GraphQLNonNull(GraphQLString) },
+        updateAt: { type: new GraphQLNonNull(GraphQLString) },
+        coverImage: { type: new GraphQLNonNull(GraphQLString) },
 
       },
       type: PostType,
       resolve: (root, args) => {
        
-        const post = {
-          id: Posts.length + 1,
-          title: args.title,
-          body: args.body,
-          published: args.published,
-          author: args.author,
-          category: args.category,
-          trending: args.trending,
-          featured: args.featured,
-          createdAt: args.createdAt,
-
-        }
-        // open jaon and save to json
-        Posts.push(post);
+        const post = new Post(args);
+        post.save();
         return post;
+
+        
       }
     },
     updatePost: {
       args: {
-        id: { type: new GraphQLNonNull(GraphQLInt) },
+        _id: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: GraphQLBoolean },
         trending: { type: GraphQLBoolean },
         featured: { type: GraphQLBoolean },
-
-
+        coverImage: { type: GraphQLString },
+        category: { type: GraphQLString },
+        title: { type: GraphQLString },
+        body: { type: GraphQLString },
+        updateAt: { type: GraphQLString },
+        
       },
       type: PostType,
       resolve: (root, args) => { 
-        const post = find(Posts, { id: args.id });
-        if (args.hasOwnProperty("published")) {
+        const post = Post.findById(args._id)
+        console.log(post);
+        if (!post) { 
+          throw new Error("Post not found");
+        } 
+        // update post field depending on the arg pased
+        if (args.published) { 
           post.published = args.published;
         }
-        if (args.hasOwnProperty("trending")) { 
+        if (args.trending) { 
           post.trending = args.trending;
         }
-        if (args.hasOwnProperty("featured")) { 
+        if (args.featured) { 
           post.featured = args.featured;
         }
-        return post;
+        if (args.coverImage) { 
+          post.coverImage = args.coverImage;
+        }
+        if (args.category) { 
+          post.category = args.category;
+        }
+        if (args.title) { 
+          post.title = args.title;
+        }
+        if (args.body) { 
+          post.body = args.body;
+        }
+        if (args.updateAt) { 
+          post.updateAt = args.updateAt;
+        }
+        return post
+       
+
+       
 
       }
     }
@@ -148,7 +185,7 @@ module.exports = mySchema;
 // }
 
 // mutation {
-//   updatePost( id:2, featured: false, trending: false, published: false) {
+//   updatePost( _id:2, featured: false, trending: false, published: false) {
 //     id
 //     title
 //     author
@@ -163,7 +200,7 @@ module.exports = mySchema;
 // myHeaders.append("Content-Type", "application/json");
 
 // var graphql = JSON.stringify({
-//   query: "mutation {\r\n  updatePost( id:2, featured: true, trending: true, published: true) {\r\n    id\r\n    title\r\n    author\r\n    category\r\n    featured\r\n    trending\r\n    createdAt\r\n    published\r\n  }\r\n}\r\n",
+//   query: "mutation {\r\n  updatePost( _id:2, featured: true, trending: true, published: true) {\r\n    id\r\n    title\r\n    author\r\n    category\r\n    featured\r\n    trending\r\n    createdAt\r\n    published\r\n  }\r\n}\r\n",
 //   variables: {}
 // })
 // var requestOptions = {
