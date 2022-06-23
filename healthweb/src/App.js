@@ -4,6 +4,7 @@ import { Container, Row } from "react-bootstrap"
 import "./App.css"
 import BlogPage2 from './BlogPage2';
 import Header from './Header';
+import Blog from './Blog';
 import{BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
       <Routes>
   
       
-       <Route exact path="/" element={<Home/>}/> 
+        <Route exact path="/" element={<Home />} /> 
+        <Route path="/blog" element={<Blog />} />
         </Routes>
     
       </Router>

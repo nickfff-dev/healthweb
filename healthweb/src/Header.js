@@ -1,6 +1,7 @@
 import React from 'react'
 import {  Container, Row, Navbar, Nav, NavItem, NavLink, NavDropdown} from "react-bootstrap"
 import { Search } from 'react-bootstrap-icons'
+import {Link} from 'react-router-dom'
 
 
 
@@ -19,14 +20,15 @@ function Header() {
             <NavLink> HOME</NavLink>
             <NavLink> ABOUT</NavLink>
             <NavLink> EXPLORE</NavLink>
-            <NavLink> BLOG</NavLink>
+            <NavLink > <Link to="/blog">Blog</Link> </NavLink>
             
             <NavLink> SUBSCRIBE</NavLink>
             <NavLink><Search/></NavLink>
        </Nav>
       </Navbar.Collapse>
     </Container>
-      </Navbar>
+    </Navbar>
+    
       
       
       

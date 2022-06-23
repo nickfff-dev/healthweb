@@ -1,49 +1,48 @@
-import React from "react"
-import { Container, Button, Col, Row } from "react-bootstrap"
-import React from "react";
-import { Nav, NavItem, NavLink, Offcanvas,Navbar, OffcanvasBody, OffcanvasHeader, Button } from "react-bootstrap";
-import{ArrowRightCircle,AwardFill, HospitalFill, HeartPulseFill, JournalMedical, BasketFill, List} from 'react-bootstrap-icons';
+import React, { useState, useEffect } from "react"
+import maskgroup from "./Mask Group.svg"
+import BlogPage2 from "./BlogPage2";
+
+
+import { Container, Button, Col, Row, Nav, NavItem, NavLink, Offcanvas,Navbar, OffcanvasBody, OffcanvasHeader } from "react-bootstrap";
+import { ArrowLeftCircle, AwardFill, HospitalFill, HeartPulseFill, JournalMedical, BasketFill, List } from 'react-bootstrap-icons';
+import Allposts from "./Allposts";
 
 
 
 function Blog() {
+
+
+
+
   return (
-    <Offcanvas placement="start" show={true} scroll={true} backdrop={false}>
-        <Offcanvas.Header >
-          <Offcanvas.Title><div className="d-flex align-items-baseline"><h3 className="px-2">Categories</h3><ArrowRightCircle /></div> </Offcanvas.Title>
+    <>
+    
+  <div className="container">
+    <div className="row flex-nowrap">
+        <div className="col-sm-2 col-auto px-0 collapse collapse-horizontal overflow-hidden" id="sidebar">
+            <div className="list-group border-0 text-center text-sm-start min-vh-100" id="sidebar-menu">
+            <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><JournalMedical/> <span className="d-none d-sm-inline">All Posts</span> </a>
+                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><BasketFill/>  <span className="d-none d-sm-inline">Nutrition</span> </a>
+                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><HospitalFill/> <span className="d-none d-sm-inline">Well Being</span></a>
+                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><HeartPulseFill/> <span className="d-none d-sm-inline">Mental Health</span></a>
+
+                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><AwardFill/> <span className="d-none d-sm-inline">Product Reviews</span></a>
+            </div>
+        </div>
+        <main className="col-sm col border-start ps-md-2 pt-2">
+           <div className="d-flex flex-row justify-content-between"> <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" className="border-0 rounded-3 p-1  text-decoration-none"><List/></a> <h3>HealthWeb</h3></div>
+            <div className="page-header mt-4 pt-3">
+              <h2 className="text-center">Explore Our Wide Range of Content</h2>
+           
+            </div>
           
-        </Offcanvas.Header>
-        
-        <Offcanvas.Body>
-        <hr/>
-        <Nav className="col-md-12 d-none d-md-block sidebar"
-            activeKey="/home"
-            onSelect={selectedKey => alert(`selected ${selectedKey}`)}
-            ><Nav.Item>
-            <Nav.Link href="/home"><div className="d-flex align-items-start justify-content-start"><JournalMedical/><span className="px-2">All Articles</span></div> </Nav.Link>
-        </Nav.Item>
-            <hr/>
-            <Nav.Item>
-                <Nav.Link href="/home"> <div className="d-flex align-items-start justify-content-start"><BasketFill/>  <span className="px-2">Nutrition </span></div> </Nav.Link>
-            </Nav.Item>
-            <hr/>
-            <Nav.Item>
-                <Nav.Link eventKey="link-1"><div className="d-flex align-items-start justify-content-start"><HospitalFill/> <span className="px-2">Mental Health</span></div></Nav.Link>
-            </Nav.Item>
-            <hr/>
-            <Nav.Item>
-                <Nav.Link eventKey="link-2"><div className="d-flex align-items-start justify-content-start"><HeartPulseFill/><span className="px-2">WellNess</span></div></Nav.Link>
-            </Nav.Item>
-            <hr/>
-            <Nav.Item>
-                <Nav.Link eventKey="link-3"><div className="d-flex flex-row align-items-start justify-content-start"><AwardFill/>
-                <span className="px-2">Product Reviews</span></div>
-                </Nav.Link>
-            </Nav.Item>
-            <hr/>
-            </Nav>
-        </Offcanvas.Body>
-      </Offcanvas>
+
+            <Allposts />
+            
+        </main>
+    </div>
+</div>
+      </>
   )
 }
 
