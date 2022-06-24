@@ -15,7 +15,7 @@ const {
 const PostType = new GraphQLObjectType({
   name: "Post",
   fields: () => ({
-    _id: { type: GraphQLString },
+    id: { type: GraphQLString },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
     published: { type: GraphQLBoolean },
@@ -33,7 +33,7 @@ const QueryType = new GraphQLObjectType({
   fields: () => ({
     posts: {
       args: {
-        _id: { type: GraphQLString },
+        id: { type: GraphQLString },
         title: { type: GraphQLString },
         body: { type: GraphQLString },
         published: { type: GraphQLBoolean },
@@ -57,7 +57,7 @@ const QueryType = new GraphQLObjectType({
     },
     singlepost: {
       args: {
-        title: { type: new GraphQLNonNull(GraphQLString) },
+       id: { type: new GraphQLNonNull(GraphQLString) },
         
       },
       type: PostType,
@@ -75,7 +75,8 @@ const QueryType = new GraphQLObjectType({
 
 });
 
-
+var idVal = new mongoose.Types.ObjectId().toHexString()
+console.log(idVal)
 const MutationType = new GraphQLObjectType({
   name: "PostMutation",
 
@@ -83,7 +84,7 @@ const MutationType = new GraphQLObjectType({
     createPost: {
      
       args: {
-        _id: { type: GraphQLString, defaultValue: new mongoose.Types.ObjectId().toHexString()  },
+        id: { type: new GraphQLNonNull(GraphQLString) },
         title: { type: new GraphQLNonNull(GraphQLString) },
         body: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: new GraphQLNonNull(GraphQLBoolean) },
@@ -92,7 +93,6 @@ const MutationType = new GraphQLObjectType({
         trending: { type: new GraphQLNonNull(GraphQLBoolean) },
         featured: { type: new GraphQLNonNull(GraphQLBoolean) },
         createdAt: { type: new GraphQLNonNull(GraphQLString) },
-        updateAt: { type: new GraphQLNonNull(GraphQLString) },
         coverImage: { type: new GraphQLNonNull(GraphQLString) },
 
       },
@@ -108,7 +108,7 @@ const MutationType = new GraphQLObjectType({
     },
     updatePost: {
       args: {
-        _id: { type: new GraphQLNonNull(GraphQLString) },
+        id: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: GraphQLBoolean },
         trending: { type: GraphQLBoolean },
         featured: { type: GraphQLBoolean },
@@ -121,36 +121,12 @@ const MutationType = new GraphQLObjectType({
       },
       type: PostType,
       resolve: (root, args) => { 
-        const post = Post.findById(args._id)
-        console.log(post);
+        const post = Post.findOne({ id: args.id })
         if (!post) { 
           throw new Error("Post not found");
         } 
         // update post field depending on the arg pased
-        if (args.published) { 
-          post.published = args.published;
-        }
-        if (args.trending) { 
-          post.trending = args.trending;
-        }
-        if (args.featured) { 
-          post.featured = args.featured;
-        }
-        if (args.coverImage) { 
-          post.coverImage = args.coverImage;
-        }
-        if (args.category) { 
-          post.category = args.category;
-        }
-        if (args.title) { 
-          post.title = args.title;
-        }
-        if (args.body) { 
-          post.body = args.body;
-        }
-        if (args.updateAt) { 
-          post.updateAt = args.updateAt;
-        }
+        Post.findOneAndUpdate({ id: args.id }, { $set: args }, { new: true }).exec();
         return post
        
 

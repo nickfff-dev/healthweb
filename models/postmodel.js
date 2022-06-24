@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-  _id: String,
+  id: String,
   title: String,
   body: String,
   author: String,
@@ -18,7 +18,7 @@ const postSchema = new Schema({
   timetoRead: String,
   
 
-}, )
+}, { timestamps: true });
 
 
 const Post = mongoose.model('Post', postSchema);
