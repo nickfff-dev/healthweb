@@ -22,7 +22,7 @@ function BlogPage2() {
                 <Col>
                   <Stack gap={2}>
                     <span style={{color: "#1F3F68", fontWeight: "bold"}}>Author Name</span>
-                    <span className="text-mute">May 5 3min read</span>
+                    <span className="text-muted">May 5 3min read</span>
                   </Stack>
                 </Col>
                 <Col>
@@ -35,8 +35,10 @@ function BlogPage2() {
             </Col>
             <Col>
               <img
-                src="https://images.pexels.com/photos/5424696/pexels-photo-5424696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src="https://images.pexels.com/photos/775032/pexels-photo-775032.jpeg?cs=srgb&dl=pexels-element-digital-775032.jpg&fm=jpg"
                 className="img-fluid  rounded-2"
+               
+                style={{aspectRatio: "1/1"}}
               />
             </Col>
           </Row>
@@ -48,6 +50,7 @@ function BlogPage2() {
             <img
               src="https://images.pexels.com/photos/5424696/pexels-photo-5424696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               className="img-fluid  rounded-2 mb-3"
+              style={{aspectRatio: "1/0.65"}}
             />
             <h2 style={{color: "#1F3F68"}}>How LGBTQIA+ Elders Can Get the Care and Support They Need</h2>
             <p>
@@ -60,7 +63,7 @@ function BlogPage2() {
               <Col>
                 <Stack gap={2}>
                   <span style={{color: "#1F3F68", fontWeight: "bold"}}>Author Name</span>
-                  <span className="text-mute">May 5 3min read</span>
+                  <span className="text-muted">May 5 3min read</span>
                 </Stack>
               </Col>
               <Col>
@@ -75,6 +78,7 @@ function BlogPage2() {
             <img
               src="https://images.pexels.com/photos/5424696/pexels-photo-5424696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               className="img-fluid rounded-2 mb-3"
+              style={{aspectRatio: "1/0.65"}}
             />
             <h2 style={{color: "#1F3F68"}}>How LGBTQIA+ Elders Can Get the Care and Support They Need</h2>
             <p>
@@ -87,7 +91,7 @@ function BlogPage2() {
               <Col>
                 <Stack gap={2}>
                   <span style={{color: "#1F3F68", fontWeight: "bold"}}>Author Name</span>
-                  <span className="text-mute">May 5 3min read</span>
+                  <span className="text-muted">May 5 3min read</span>
                 </Stack>
               </Col>
               <Col>
@@ -102,6 +106,7 @@ function BlogPage2() {
             <img
               src="https://images.pexels.com/photos/5424696/pexels-photo-5424696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               className="img-fluid  rounded-2 mb-3"
+              style={{aspectRatio: "1/0.65"}}
             />
             <h2 style={{color: "#1F3F68"}}>How LGBTQIA+ Elders Can Get the Care and Support They Need</h2>
             <p>
@@ -114,7 +119,7 @@ function BlogPage2() {
               <Col>
                 <Stack gap={2}>
                   <span style={{color: "#1F3F68", fontWeight: "bold"}}>Author Name</span>
-                  <span className="text-mute">May 5 3min read</span>
+                  <span className="text-muted">May 5 3min read</span>
                 </Stack>
               </Col>
               <Col>

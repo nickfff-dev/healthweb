@@ -17,10 +17,10 @@ function Header() {
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse className=" justify-content-center" id="navbarScroll">
           <Nav style={{fontWeight: "bold", fontSize: "20px", color:"#1F3F68" }}>
-            <NavLink> HOME</NavLink>
-            <NavLink> ABOUT</NavLink>
-            <NavLink> EXPLORE</NavLink>
-            <NavLink > <Link to="/blog">Blog</Link> </NavLink>
+            <NavLink href="/"> HOME</NavLink>
+            <NavLink href="/blog"> EXPLORE</NavLink>
+            <NavLink href="/contact">CONTACT </NavLink>
+            <NavLink href="/blog"> BLOG </NavLink>
             
             <NavLink> SUBSCRIBE</NavLink>
             <NavLink><Search/></NavLink>

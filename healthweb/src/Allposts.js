@@ -14,6 +14,7 @@ function Allposts() {
                 <div>
                   <img
                   src="https://images.pexels.com/photos/5424696/pexels-photo-5424696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  style={{ aspectRatio: "1/0.65" }}
                   width="500px"
                   height="300px"
                   
@@ -53,7 +54,8 @@ function Allposts() {
              
                 <div>
                   <img
-                  src="https://images.pexels.com/photos/5424696/pexels-photo-5424696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  src="https://images.pexels.com/photos/775032/pexels-photo-775032.jpeg?cs=srgb&dl=pexels-element-digital-775032.jpg&fm=jpg"
+                  style={{ aspectRatio: "1/0.65" }}
                   width="500px"
                   height="300px"
                    
@@ -94,6 +96,7 @@ function Allposts() {
                 <div>
                   <img
                   src="https://images.pexels.com/photos/5424696/pexels-photo-5424696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  style={{ aspectRatio: "1/0.65" }}
                   width="500px"
                   height="300px"
                    
@@ -134,6 +137,7 @@ function Allposts() {
                 <div>
                   <img
                   src="https://images.pexels.com/photos/5424696/pexels-photo-5424696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  style={{ aspectRatio: "1/0.65" }}
                   width="500px"
                   height="300px"
                    

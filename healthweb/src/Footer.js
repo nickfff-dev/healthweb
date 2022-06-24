@@ -7,11 +7,11 @@ function Footer() {
   return (
  
       <div className="footer mt-5">
-        <Stack gap={5}>
+        <Stack gap={2}>
         <Container >
-      <div className="d-flex text-left  align-items-center justify-content-between py-5 pr-5">
-            <Col >
-            <h2 className="text-left mb-5 text-bold">Interested to Work <br/> With Our Team?</h2>
+      <div className="d-flex text-left  align-items-center justify-content-between mt-5 pr-5">
+            <Col>
+            <h2 className="text-left  mb-5 text-bold">Interested to Work <br/> With Our Team?</h2>
             <p className="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
             </Col>
             <Col></Col>
@@ -24,7 +24,7 @@ function Footer() {
         </Container>
         <hr className="w-75"/>
           <Container>
-      <div className="d-flex flex-row align-items-start justify content-center">
+      <div className="d-flex flex-row align-items-start justify-content-center">
        
         
          
@@ -56,7 +56,7 @@ function Footer() {
       
       </div>
         </Container>
-       <Container> <p className="mute">2022 Healthweb &copy; Allrights reserved</p></Container>
+       <Container> <span className="text-muted text-white">2022 Healthweb &copy; Allrights reserved</span></Container>
       </Stack>
 
       </div>

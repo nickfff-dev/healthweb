@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react"
+import { Container, Col } from "react-bootstrap";
 import { ArrowLeftCircle, AwardFill, HospitalFill, HeartPulseFill, JournalMedical, BasketFill, List } from 'react-bootstrap-icons';
 import Allposts from "./Allposts";
+import Footer from "./Footer";
+import Header from "./Header";
+import BlogPage2 from "./BlogPage2";
 
 
 
@@ -11,6 +15,7 @@ function Blog() {
 
   return (
     <>
+      <Header />
     
   <div className="container">
     <div className="row flex-nowrap">
@@ -25,18 +30,19 @@ function Blog() {
             </div>
         </div>
         <main className="col-sm col border-start ps-md-2 pt-2">
-            <div className="d-flex flex-row justify-content-between"> <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" className="border-0 rounded-3 p-1  text-decoration-none"><List size={40} /></a> <h3>HealthWeb</h3></div>
-            <div className="page-header mt-4 pt-3">
-              <h2 className="text-center">Explore Our Wide Range of Content</h2>
-           
-            </div>
+             <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" className="border-0 rounded-3 p-1  text-decoration-none"><List size={40} /></a> 
+            
           
-
+            <BlogPage2 />
             <Allposts />
             
-        </main>
-    </div>
-</div>
+           
+          </main>
+          
+        </div>
+        
+      </div>
+      <div ><Footer /></div> 
       </>
   )
 }
