@@ -105,10 +105,10 @@ function BlogManager() {
                 </Col>
                 
               </Row>
-              <Row className="mt-3">
+              <Row className="mt-3 w-50 mx-auto">
                 <Col>
                   <Container>
-                  <FormGroup>
+                  <FormGroup className="text-center">
                     <FormLabel>Body</FormLabel>
                     <Editor value={ editorContent} onChange={onEditorChange} />
                   </FormGroup>
