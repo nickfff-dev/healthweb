@@ -6,6 +6,7 @@ import Contact from './Contact';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BlogManager from './BlogManager';
 import CreatePost from './CreatePost';
+import ManageLogin from './ManageLogin';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/blogmanager" element={<BlogManager />} />
         <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/manage-login" element={<ManageLogin />} />
 
         </Routes>
     

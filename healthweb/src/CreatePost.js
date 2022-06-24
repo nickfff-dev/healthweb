@@ -14,7 +14,7 @@ import {
   FormText,
   FormControl,
 } from "react-bootstrap";
-import { Editor } from "react-bootstrap-editor";
+
 
 
 function CreatePost () {
