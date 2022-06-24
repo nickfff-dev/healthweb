@@ -18,7 +18,7 @@ function Header() {
       <Navbar.Collapse className=" justify-content-center" id="navbarScroll">
           <Nav style={{fontWeight: "bold", fontSize: "20px", color:"#1F3F68" }}>
             <NavLink href="/"> HOME</NavLink>
-            <NavLink href="/blog"> EXPLORE</NavLink>
+            <NavLink href="/blogmanager"> EXPLORE</NavLink>
             <NavLink href="/contact">CONTACT </NavLink>
             <NavLink href="/blog"> BLOG </NavLink>
             
