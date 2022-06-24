@@ -146,7 +146,7 @@ background: #1F3F68;
 
 
 #sidebar-menu {
-  width: 50vw
+  width:300px
 }
 
 @media (max-width:576px) {
@@ -165,5 +165,38 @@ background: #1F3F68;
   
 }
 
+#sidebar{
+  transition: all 0.75s ease-in-out;
+}
 
 
+/* create a reactangle background with the top right rounded */
+.footer{
+ 
+  width:95vw;
+  height: auto;
+  color: white;
+  background-color: #316099;
+
+  border-top-right-radius: 90px;
+
+  margin-left: 0;
+  margin-bottom: 3px;
+
+}
+
+
+.subscribe{
+  width: 250px;
+  background-color: #5A98D0 !important;
+  padding: 20px !important;
+  font-size: 20px;
+}
+
+
+h2{font-size: 2rem;
+  line-height: 78px;}
+
+p{font-size: 20px;
+  line-height: 26px;
+}

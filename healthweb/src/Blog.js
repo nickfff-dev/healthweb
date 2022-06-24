@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from "react"
-import maskgroup from "./Mask Group.svg"
-import BlogPage2 from "./BlogPage2";
-
-
-import { Container, Button, Col, Row, Nav, NavItem, NavLink, Offcanvas,Navbar, OffcanvasBody, OffcanvasHeader } from "react-bootstrap";
 import { ArrowLeftCircle, AwardFill, HospitalFill, HeartPulseFill, JournalMedical, BasketFill, List } from 'react-bootstrap-icons';
 import Allposts from "./Allposts";
 
@@ -30,7 +25,7 @@ function Blog() {
             </div>
         </div>
         <main className="col-sm col border-start ps-md-2 pt-2">
-           <div className="d-flex flex-row justify-content-between"> <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" className="border-0 rounded-3 p-1  text-decoration-none"><List/></a> <h3>HealthWeb</h3></div>
+            <div className="d-flex flex-row justify-content-between"> <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" className="border-0 rounded-3 p-1  text-decoration-none"><List size={40} /></a> <h3>HealthWeb</h3></div>
             <div className="page-header mt-4 pt-3">
               <h2 className="text-center">Explore Our Wide Range of Content</h2>
            

@@ -6,6 +6,7 @@ import Explore from './Explore';
 import BlogPage2 from './BlogPage2';
 import Allposts from './Allposts';
 import SideBar from './SideBar';
+import Footer from './Footer';
 
 
 function Home () {
@@ -23,6 +24,8 @@ function Home () {
         <BlogPage2 /></Container>
     
         <Container><Allposts /></Container>
+        
+<Footer/>
        
 
         </Stack>
