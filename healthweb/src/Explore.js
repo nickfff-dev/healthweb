@@ -53,6 +53,7 @@ function Explore() {
       </div>
       
     </Container>
+  
   );
 }
 

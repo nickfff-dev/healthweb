@@ -14,10 +14,11 @@ var data = JSON.stringify({
 });
 
 var config = {
-  method: 'post',
+  method: 'POST',
   url: 'http://localhost:5000/graphql',
   headers: { 
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "http://localhost:3000"
   },
   data : data
 };
