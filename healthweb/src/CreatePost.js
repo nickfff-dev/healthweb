@@ -14,6 +14,7 @@ import {
   FormText,
   FormControl,
 } from "react-bootstrap";
+import axios from "axios";
 
 
 
@@ -22,6 +23,33 @@ function CreatePost () {
   const onEditorChange = (content) => {
     setEditorContent(content);
     console.log(content);
+  }
+
+  const onSubmitHandler = (e) => { 
+    
+var data = JSON.stringify({
+  query: `mutation ($id: String! , $author: String!, $title: String!, $body: String!, $coverImage: String!, $trending: Boolean!, $published: Boolean!, $category: String!, $featured: Boolean!, $createdAt: String! ){ createPost(id: $id, body: $body, coverImage: $coverImage, trending: $trending, published: $published, category: $category, featured: $featured, title:$title, createdAt: $createdAt, author: $author)
+  {id title author category featured trending createdAt published body coverImage}}`,
+  variables: {"id":"postman1","body":"postman and asap rocky did ths","coverImage":"https://images.pexels.com/photos/557662/pexels-photo-557662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","trending":true,"published":false,"createdAt":"sai tu","featured":true,"category":"well-being","author":"asaprockydidthi","title":"almost there"}
+});
+
+var config = {
+  method: 'post',
+  url: 'http://localhost:5000/graphql',
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
   }
 
   return (
@@ -55,7 +83,7 @@ function CreatePost () {
         <Col>
           <Container fluid className="px-3 mt-5 postform">
             <h4 className="text-center">Post Editor</h4>
-            <Form className="w-100">
+            <Form className="w-100" method="POST" onSubmit={onSubmitHandler}>
               <h5 className="text-center">Post ID Title</h5>
               
                

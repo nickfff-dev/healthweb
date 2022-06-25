@@ -34,16 +34,7 @@ const QueryType = new GraphQLObjectType({
     posts: {
       args: {
         id: { type: GraphQLString },
-        title: { type: GraphQLString },
-        body: { type: GraphQLString },
-        published: { type: GraphQLBoolean },
-        updateAt: { type: GraphQLString },
-        author: { type: GraphQLString },
-        category: { type: GraphQLString },
-        trending: {type: GraphQLBoolean},
-        featured: {type: GraphQLBoolean},
-        createdAt: {type: GraphQLString,
-        },
+     
       },
       type: new GraphQLList(PostType),
       
@@ -147,46 +138,3 @@ const mySchema = new GraphQLSchema({
 module.exports = mySchema;
 
 
-//  mutation {
-//   createPost(title: "nasir", author: "tuma", category: "kitu", featured: true, createdAt: "hapa", trending: true, published: true, body: "kule") {
-//     id
-//     title
-//     author
-//     category
-//     featured
-//     trending
-//     createdAt
-//     published
-//   }
-// }
-
-// mutation {
-//   updatePost( _id:2, featured: false, trending: false, published: false) {
-//     id
-//     title
-//     author
-//     category
-//     featured
-//     trending
-//     createdAt
-//     published
-//   }
-// }
-// var myHeaders = new Headers();
-// myHeaders.append("Content-Type", "application/json");
-
-// var graphql = JSON.stringify({
-//   query: "mutation {\r\n  updatePost( _id:2, featured: true, trending: true, published: true) {\r\n    id\r\n    title\r\n    author\r\n    category\r\n    featured\r\n    trending\r\n    createdAt\r\n    published\r\n  }\r\n}\r\n",
-//   variables: {}
-// })
-// var requestOptions = {
-//   method: 'POST',
-//   headers: myHeaders,
-//   body: graphql,
-//   redirect: 'follow'
-// };
-
-// fetch("http://localhost:5000/graphql", requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));

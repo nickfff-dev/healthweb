@@ -15,6 +15,7 @@ import {
   FormControl,
 } from "react-bootstrap";
 import { Editor } from "react-bootstrap-editor";
+import axios from "axios";
 
 function BlogManager() {
   const [editorContent, setEditorContent] = useState("Browsers have added an internal aspect-ratio property that applies to replaced elements and other related elements that accept width and height attributes. This appears in the browser's internal UA stylesheet.");
@@ -22,6 +23,32 @@ function BlogManager() {
     setEditorContent(content);
     console.log(content);
   };
+  const onSubmitHandler = (e) => {
+   
+var data = JSON.stringify({
+  query: `mutation ($id: String! , $body: String!, $coverImage: String!, $trending: Boolean!, $published: Boolean! ){ updatePost(id: $id, body: $body, coverImage: $coverImage, trending: $trending, published: $published)
+  {id title author category featured trending createdAt published body coverImage}}`,
+  variables: {"id":"helpwith id","body":"dfdgfdjf","coverImage":"https://images.pexels.com/photos/551997/pexels-photo-551997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","trending":true,"published":false}
+});
+
+var config = {
+  method: 'post',
+  url: 'http://localhost:5000/graphql',
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+  }
 
   return (
     <Col>
@@ -54,7 +81,7 @@ function BlogManager() {
         <Col>
           <Container fluid className="px-3 mt-5 postform">
             <h4 className="text-center">Post Editor</h4>
-            <Form className="w-100">
+            <Form className="w-100" Method="Post" onSubmit={onSubmitHandler}>
               <h5 className="text-center">Post ID Title</h5>
               <Row>
                

@@ -2,8 +2,36 @@ import React from "react";
 import { Container, Row, Col, Stack } from "react-bootstrap";
 import { BookmarkFill, ShareFill } from "react-bootstrap-icons";
 import { ArrowRightCircle } from "react-bootstrap-icons";
+import axios from "axios";
 
 function BlogPage2() {
+  const searchSinglePost = (id) => { 
+
+var data = JSON.stringify({
+  query: `query PostType($id: String!){posts(id: $id){
+    id
+}}`,
+  variables: {"id":id}
+});
+
+var config = {
+  method: 'post',
+  url: 'http://localhost:5000/graphql',
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+  }
   return (
     <Col style={{ padding: "2rem 4rem 4rem" }}>
       <h3 style={{color: "#1F3F68"}}>Popular</h3>
