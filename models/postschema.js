@@ -18,7 +18,7 @@ const PostType = new GraphQLObjectType({
     id: { type: GraphQLString },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
-    published: { type: GraphQLBoolean, defaultValue: false },
+   
     author: { type: GraphQLString },
     category: { type: GraphQLString },
     trending: { type: GraphQLBoolean, defaultValue: false },
@@ -82,7 +82,7 @@ const MutationType = new GraphQLObjectType({
         category: { type: new GraphQLNonNull(GraphQLString) },  
         createdAt: { type: new GraphQLNonNull(GraphQLString)},
         coverImage: { type: new GraphQLNonNull(GraphQLString) },
-        published: { type: GraphQLBoolean, defaultValue: false },
+       
         trending: { type: GraphQLBoolean, defaultValue: false },
         featured: { type: GraphQLBoolean, defaultValue: false },
 
@@ -100,7 +100,7 @@ const MutationType = new GraphQLObjectType({
     updatePost: {
       args: {
         id: { type: new GraphQLNonNull(GraphQLString) },
-        published: { type: GraphQLBoolean },
+        
         trending: { type: GraphQLBoolean },
         featured: { type: GraphQLBoolean },
         coverImage: { type: GraphQLString },

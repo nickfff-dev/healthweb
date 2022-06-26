@@ -10,7 +10,7 @@ const postSchema = new Schema({
   author: String,
   createdAt: String,
   updatedAt: String,
-  published: Boolean,
+ 
   trending: Boolean,
   featured: Boolean,
   coverImage: String,
