@@ -1,9 +1,15 @@
 import React from "react";
 import { Container, Row, Col, Stack } from "react-bootstrap";
 import { BookmarkFill, ShareFill } from "react-bootstrap-icons";
+import { useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 
 function Allposts() {
+  const { loading, error, data } = useQuery(gql`query PostType{posts{id}}`)
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  // if (data) return console.log(data)
 
   return (
     <Col>

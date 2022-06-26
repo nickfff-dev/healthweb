@@ -4,7 +4,10 @@ import { BookmarkFill, ShareFill } from "react-bootstrap-icons";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 
 
+
+
 function BlogPage2() {
+ 
   
   return (
     <Col style={{ padding: "2rem 4rem 4rem" }}>

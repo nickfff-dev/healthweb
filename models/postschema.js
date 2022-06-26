@@ -80,7 +80,7 @@ const MutationType = new GraphQLObjectType({
         body: { type: new GraphQLNonNull(GraphQLString) },
         author: { type: new GraphQLNonNull(GraphQLString) },
         category: { type: new GraphQLNonNull(GraphQLString) },  
-        createdAt: { type: GraphQLString, defaultValue: new Date().toISOString() },
+        createdAt: { type: new GraphQLNonNull(GraphQLString)},
         coverImage: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: GraphQLBoolean, defaultValue: false },
         trending: { type: GraphQLBoolean, defaultValue: false },

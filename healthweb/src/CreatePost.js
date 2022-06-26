@@ -14,16 +14,22 @@ import {
   FormText,
   FormControl,
 } from "react-bootstrap";
+import { useQuery } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
+import { v4 as uuidv4 } from 'uuid'
+
 
 
 
 
 function CreatePost() {
   
+
+const now = new Date().toISOString().split('T')[0];
  
 
   const [newPost, setNewPost] = useState({
-    id: "thoma5690syu", body: "", coverImage: "", title: "", author: "", category: "",
+    id: "worknow", body: "", coverImage: "", title: "", author: "", category: "", createdAt:""
   });
 
   const onTitleChange = (e) => {
@@ -46,10 +52,25 @@ function CreatePost() {
   const onBodyChange = (e) => {
     setNewPost({ ...newPost, body: e.target.value });
     
+    
   }
 
+  const makePost =gql` mutation createPost($id: String!, $title: String!, $body: String!, $author: String!, $coverImage: String!, $category: String!, $createdAt: String!) {
+    createPost(id: $id, title: $title, body: $body, author: $author, coverImage: $coverImage, category: $category, createdAt: $createdAt) {
+      id title body author coverImage category createdAt
+    }
+  }`
+
+  const [createPost, { loading, error, data }] = useMutation(makePost)
+
   
-    
+  const onSubmitHandler = (e) => { 
+    e.preventDefault();
+    createPost({ variables: { id: uuidv4(), title: newPost.title, body: newPost.body, author: newPost.author, coverImage: newPost.coverImage, category: newPost.category,createdAt:now } })
+    if (loading) return 'Submitting...';
+    if (error) return `Submission error! ${error.message}`;
+    if (data) return `Submission success! ${data.createPost.title}`;
+  }
 
   return (
     <Col>
@@ -81,9 +102,10 @@ function CreatePost() {
       
         <Col>
           <Container fluid className="px-3 mt-5 postform">
-            <h4 className="text-center">Post Editor</h4>
-            <Form className="w-100">
-              <h5 className="text-center">Post ID Title</h5>
+            <h4 className="text-center">Create Post</h4>
+          <Form className="w-100" onSubmit={onSubmitHandler}>
+            
+             
               
                
               <Stack gap={5}>
