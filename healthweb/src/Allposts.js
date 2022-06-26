@@ -42,7 +42,7 @@ function Allposts() {
                   <Col>
                     <Stack gap={2}>
                       <span style={{ color: "#1F3F68", fontWeight: "bold" }}>{ post.author}</span>
-                      <span className="text-mute">{post.createdAt} min read</span>
+                      <span className="text-mute">{post.createdAt} {Math.ceil( (post.body.trim().split(/\s+/).length)/225)}min read</span>
                    
                     </Stack>
                   </Col>
