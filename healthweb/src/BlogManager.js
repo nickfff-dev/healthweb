@@ -17,6 +17,7 @@ import {
 import { Editor } from "react-bootstrap-editor";
 import { useQuery } from "@apollo/client";
 import { gql, useMutation } from "@apollo/client";
+import axios from "axios";
 
 
 function BlogManager() {
@@ -28,7 +29,8 @@ function BlogManager() {
 
 
 
- 
+  const [user, setUser] = useState()
+  
 
   const [newPost, setNewPost] = useState({});
 
@@ -77,7 +79,7 @@ function BlogManager() {
 
   }
 
-
+  
 
 
   return (
