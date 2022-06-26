@@ -18,13 +18,14 @@ const PostType = new GraphQLObjectType({
     id: { type: GraphQLString },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
-    published: { type: GraphQLBoolean },
+    published: { type: GraphQLBoolean, defaultValue: false },
     author: { type: GraphQLString },
     category: { type: GraphQLString },
-    trending: { type: GraphQLBoolean },
-    featured: { type: GraphQLBoolean },
+    trending: { type: GraphQLBoolean, defaultValue: false },
+    featured: { type: GraphQLBoolean, defaultValue: false },
     coverImage: { type: GraphQLString },
     createdAt: { type: GraphQLString },
+    updatedAt: { type: GraphQLString },
   }),
 });
 
@@ -66,8 +67,7 @@ const QueryType = new GraphQLObjectType({
 
 });
 
-var idVal = new mongoose.Types.ObjectId().toHexString()
-console.log(idVal)
+
 const MutationType = new GraphQLObjectType({
   name: "PostMutation",
 
@@ -78,13 +78,13 @@ const MutationType = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLString) },
         title: { type: new GraphQLNonNull(GraphQLString) },
         body: { type: new GraphQLNonNull(GraphQLString) },
-        published: { type: new GraphQLNonNull(GraphQLBoolean) },
         author: { type: new GraphQLNonNull(GraphQLString) },
         category: { type: new GraphQLNonNull(GraphQLString) },  
-        trending: { type: new GraphQLNonNull(GraphQLBoolean) },
-        featured: { type: new GraphQLNonNull(GraphQLBoolean) },
-        createdAt: { type: new GraphQLNonNull(GraphQLString) },
+        createdAt: { type: GraphQLString, defaultValue: new Date().toISOString() },
         coverImage: { type: new GraphQLNonNull(GraphQLString) },
+        published: { type: GraphQLBoolean, defaultValue: false },
+        trending: { type: GraphQLBoolean, defaultValue: false },
+        featured: { type: GraphQLBoolean, defaultValue: false },
 
       },
       type: PostType,

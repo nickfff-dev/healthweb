@@ -5,6 +5,7 @@ const graphqlHTTP = require('express-graphql').graphqlHTTP;
 const mySchema = require('./models/postschema');
 const mongoose = require('mongoose');
 var cors = require('cors');
+const bodyParser = require('body-parser');
 
 const session = require('express-session');
 
@@ -27,7 +28,9 @@ mongoose.connect(MONGO_URI, () => {
 const port = 5000;
 const app = express();
 
-app.use(cors())
+// setup cors for graphql endpoint
+
+app.use(cors());
 
 
 app.use('/graphql', graphqlHTTP({

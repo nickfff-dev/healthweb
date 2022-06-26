@@ -1,36 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Stack } from "react-bootstrap";
 import { BookmarkFill, ShareFill } from "react-bootstrap-icons";
-import axios from "axios";
+
 
 function Allposts() {
-  const [posts, setPosts] = React.useState([]);
 
-  React.useEffect(() => { 
-  
-var data = JSON.stringify({
-  query: `{posts{id title author coverImage createdAt published trending featured category body}}`,
-  variables: {}
-});
-
-var config = {
-  method: 'POST',
-  url: 'http://localhost:5000/graphql',
-  headers: { 
-    'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "http://localhost:3000"
-  },
-  data : data
-};
-
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
-  }, []);
   return (
     <Col>
       <h3 style={{color: "#1F3F68"}}>All posts</h3>
