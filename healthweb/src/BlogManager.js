@@ -215,7 +215,7 @@ function BlogManager() {
                         <td>{post.title}</td>
                         <td>{post.author}</td>
                         <td>{post.createdAt}</td>
-                        <td>{post.body}</td>
+                        <td>{post.body.substring(0, 100)}</td>
                         <td>{post.trending}</td>
                         <td>{post.featured}</td>
                         <td>{post.category}</td>
