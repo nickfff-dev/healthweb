@@ -34,20 +34,7 @@ function ManageRegister() {
     }
   
     const onSubmitHandler = (e) => {
-      const user = {
-        username: username,
-        password: password,
-        email: email
-  
-      }
-      axios.post("http://localhost:5000/signup", user)
-        .then((res) => {
-          if (res.data === "user created") {
-            window.location.href = "/blogmanager"
-          } else {
-            alert("signup failed failed")
-          }
-         })
+     
      
   }
   
@@ -55,7 +42,7 @@ function ManageRegister() {
       <Container fluid className="w-50 mt-5 postform d-flex  ">
         <Row>
           <Col>
-            <Form method="POST" onSubmit={onSubmitHandler}>
+            <Form method="POST">
               <FormGroup>
                 <FormLabel>Username</FormLabel>
                 <FormControl
@@ -76,12 +63,12 @@ function ManageRegister() {
                
         
               <FormGroup>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl type="text" placeholder="Enter Email" onChange={onEmailChange} value={email} />
               </FormGroup>
         
               </FormGroup>
-              <input type="submit" value="submit"/>
+              <input type="submit" value="submit" onSubmit= {onSubmitHandler}/>
             </Form>
           </Col>
         </Row>

@@ -18,7 +18,7 @@ import axios from "axios"
 
 
 function ManageLogin() {
-   const navigate = useNavigate()
+
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -34,19 +34,13 @@ function ManageLogin() {
 
 
   const onSubmitHandler = (e) => {
-    const user = {
+    const data = {
       username: username,
-      password: password,
+      password: password
+}
 
-    }
-    axios.post("http://localhost:5000/login", user)
-      .then((res) => {
-        if (res.data === "login successful") {
-          window.location.href = "/blogmanager"
-        } else {
-          alert("signup failed failed")
-        }
-       })
+    
+
    
 }
 
@@ -58,7 +52,7 @@ function ManageLogin() {
 
     <Container fluid className="w-50 mt-5 postform ">
      
-      <Form className="mx-auto w-50" method= "POST" onSubmit= {onSubmitHandler}>
+      <Form className="mx-auto w-50" method= "POST" >
         
         <h5 className="text-center">Manage Login</h5>
         <Stack gap={5}>
@@ -79,7 +73,7 @@ function ManageLogin() {
               </FormGroup>
             </Container>
           </Col>
-          <Row className="mx-auto"><Button className="btn-lg">Submit</Button></Row>
+          <Row className="mx-auto"><input className="btn-lg" type="submit" value="submit" onSubmit= {onSubmitHandler}/></Row>
         </Stack>
       </Form>
     </Container>
