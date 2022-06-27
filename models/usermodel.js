@@ -15,9 +15,7 @@ const userSchema = new Schema({
 
 })
 
-userSchema.methods.comparePassword = function(password) {
-  return bcrypt.compareSync(password, this.hash_password);
-};
+
 
 
 const User = mongoose.model('User', userSchema);

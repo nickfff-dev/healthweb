@@ -5,12 +5,19 @@ import Allposts from "./Allposts";
 import Footer from "./Footer";
 import Header from "./Header";
 import BlogPage2 from "./BlogPage2";
+import { useQuery } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 
 
-function Blog() {
+function Blog(props) {
 
 
+  const { data } = useQuery(gql`query PostType{posts{id title author category coverImage updatedAt createdAt featured trending body}}`)
+
+
+
+  
 
 
   return (
@@ -34,7 +41,9 @@ function Blog() {
             
           
             <BlogPage2 />
-            <Allposts />
+            {/* <Allposts data={data} /> */}
+
+            {data ?  <Allposts data={data} /> : <p>loading</p>} 
             
            
           </main>

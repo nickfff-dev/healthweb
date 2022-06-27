@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Post = require("./postmodel");
+const User  = require("./usermodel")
 
 
 const {
@@ -29,6 +30,11 @@ const PostType = new GraphQLObjectType({
   }),
 });
 
+
+
+
+
+
 const QueryType = new GraphQLObjectType({
   name: "PostQuery",
   fields: () => ({
@@ -46,19 +52,20 @@ const QueryType = new GraphQLObjectType({
         }
         return posts;
       },
+      
     },
-    singlepost: {
+    singlecategory: {
       args: {
-       id: { type: new GraphQLNonNull(GraphQLString) },
+       category: { type: new GraphQLNonNull(GraphQLString) },
         
       },
-      type: PostType,
+      type: new GraphQLList(PostType),
       resolve: (root, args) => { 
-        const post = Post.findOne(args).exec();
-        if (!post) {
+        const posts = Post.find(args).exec();
+        if (!posts) {
           throw new Error("Error");
         }
-        return post;
+        return posts;
         
       }
     },

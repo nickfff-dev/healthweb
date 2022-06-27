@@ -20,7 +20,11 @@ function ManageRegister() {
   
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
+  const [error, setError] = useState("")
+  const [email, setEmail] = useState("")
+  const onEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
     const onUsernameChange = (event) => { 
       setUsername(event.target.value)
     }
@@ -29,29 +33,29 @@ function ManageRegister() {
       setPassword(event.target.value)
     }
   
-    const onSubmit = (e) => {
-      e.preventDefault()
-      axios.post("http://localhost:5000/api/auth/register", {
+    const onSubmitHandler = (e) => {
+      const user = {
         username: username,
         password: password,
-      })
-        .then((res) => {
-          console.log(res)
-          localStorage.setItem("token", res.data.token)
-          
-        }).catch((err) => {
-          console.log(err)
-          setError(err.response.data.message)
-        }
-        )
+        email: email
   
-    }
+      }
+      axios.post("http://localhost:5000/signup", user)
+        .then((res) => {
+          if (res.data === "user created") {
+            window.location.href = "/blogmanager"
+          } else {
+            alert("signup failed failed")
+          }
+         })
+     
+  }
   
     return (
       <Container fluid className="w-50 mt-5 postform d-flex  ">
         <Row>
           <Col>
-            <Form method="POST" onSubmit={onSubmit}>
+            <Form method="POST" onSubmit={onSubmitHandler}>
               <FormGroup>
                 <FormLabel>Username</FormLabel>
                 <FormControl
@@ -69,6 +73,13 @@ function ManageRegister() {
                   value={password}
                   onChange={onPasswordChange}
                 />
+               
+        
+              <FormGroup>
+                <FormLabel>Password</FormLabel>
+                <FormControl type="text" placeholder="Enter Email" onChange={onEmailChange} value={email} />
+              </FormGroup>
+        
               </FormGroup>
               <input type="submit" value="submit"/>
             </Form>

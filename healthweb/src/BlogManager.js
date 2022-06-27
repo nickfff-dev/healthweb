@@ -17,7 +17,7 @@ import {
 import { Editor } from "react-bootstrap-editor";
 import { useQuery } from "@apollo/client";
 import { gql, useMutation } from "@apollo/client";
-import axios from "axios";
+
 
 
 function BlogManager() {
@@ -48,7 +48,7 @@ function BlogManager() {
     setNewPost({ ...newPost, category: e.target.value });
   }
 
-  const onBodyChange = (e) => {
+  const onBodyChange = (Editor) => {
     setNewPost({ ...newPost, body: Editor.value })
     
     
@@ -179,7 +179,7 @@ function BlogManager() {
                   <Container>
                   <FormGroup className="text-center">
                     <FormLabel>Body</FormLabel>
-                    <Editor value={newPost.body}  onChange={ onBodyChange} />
+                    <FormControl as={Editor} value={newPost.body}  onChange={onBodyChange} />
                   </FormGroup>
                     <Container><Button className="postbtn mt-5">Submit</Button></Container>
                     </Container>

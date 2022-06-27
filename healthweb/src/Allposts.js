@@ -5,10 +5,8 @@ import { useQuery } from "@apollo/client";
 import { gql } from "@apollo/client";
 
 
-function Allposts() {
-  const { loading, error, data } = useQuery(gql`query PostType{posts{id title author category coverImage updatedAt createdAt featured trending body}}`)
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+function Allposts(props) {
+
   // if (data) return console.log(data)
 
   return (
@@ -16,7 +14,7 @@ function Allposts() {
       <h3 style={{color: "#1F3F68"}}>All posts</h3>
       <Col>
         <div className="d-flex flex-column justify-content-evenly">
-          { data && data.posts.map(post => {
+          { props.data && props.data.posts.map(post => {
           return(          <Container key={post.id} style={{padding: "2rem 4rem 4rem"}}>
           <div className="d-flex flex-row align-items-end justify-content-between">
            

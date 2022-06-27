@@ -17,12 +17,12 @@ import axios from "axios"
 
 
 
-
 function ManageLogin() {
    const navigate = useNavigate()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
+
+ 
   const onUsernameChange = (event) => { 
     setUsername(event.target.value)
   }
@@ -30,24 +30,24 @@ function ManageLogin() {
   const onPasswordChange = (event) => { 
     setPassword(event.target.value)
   }
+  
 
 
- const onSubmit = (e) => {
-    e.preventDefault()
-    axios.post("http://localhost:5000/api/users/login", {
+  const onSubmitHandler = (e) => {
+    const user = {
       username: username,
       password: password,
-    })
+
+    }
+    axios.post("http://localhost:5000/login", user)
       .then((res) => {
-        console.log(res)
-        localStorage.setItem("token", res.data.token)
-        navigate("/blog-manager")
-      }).catch((err) => {
-        console.log(err)
-        setError(err.response.data.message)
-      }
-      )
-  
+        if (res.data === "login successful") {
+          window.location.href = "/blogmanager"
+        } else {
+          alert("signup failed failed")
+        }
+       })
+   
 }
 
 
@@ -58,7 +58,7 @@ function ManageLogin() {
 
     <Container fluid className="w-50 mt-5 postform ">
      
-      <Form className="mx-auto w-50">
+      <Form className="mx-auto w-50" method= "POST" onSubmit= {onSubmitHandler}>
         
         <h5 className="text-center">Manage Login</h5>
         <Stack gap={5}>
@@ -70,6 +70,7 @@ function ManageLogin() {
               </FormGroup>
             </Container>
           </Col>
+         
           <Col>
             <Container>
               <FormGroup>
