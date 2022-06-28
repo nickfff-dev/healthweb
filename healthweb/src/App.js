@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Home from './Home';
 import "./App.css"
 import Blog from './Blog';
@@ -12,7 +12,7 @@ import ManageLogin from './ManageLogin';
 
 
 function App() {
-  const [posts, setPosts] = useState([])
+
 
 
 

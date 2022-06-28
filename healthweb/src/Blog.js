@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
-import { Container, Col } from "react-bootstrap";
-import { ArrowLeftCircle, AwardFill, HospitalFill, HeartPulseFill, JournalMedical, BasketFill, List } from 'react-bootstrap-icons';
+
+import {AwardFill, HospitalFill, HeartPulseFill, JournalMedical, BasketFill, List } from 'react-bootstrap-icons';
 import Allposts from "./Allposts";
 import Footer from "./Footer";
 import Header from "./Header";
 import BlogPage2 from "./BlogPage2";
 import { useQuery } from "@apollo/client";
-import { gql, useMutation } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 
 
@@ -73,11 +73,11 @@ function Blog(props) {
         <main className="col-sm col border-start ps-md-2 pt-2">
              <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" className="border-0 rounded-3 p-1  text-decoration-none"><List size={40} /></a> 
             
-          
-            <BlogPage2 data={data} />
+        
+            {data ? <BlogPage2 data={data} /> : <p>loading popular posts { catToRender}</p>}
             {/* <Allposts data={data} /> */}
 
-            {data ?  <Allposts data={data} /> : <p>loading</p>} 
+            {data ?  <Allposts data={data} /> : <p>loading posts</p>} 
             
            
           </main>

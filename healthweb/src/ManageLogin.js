@@ -1,13 +1,13 @@
 import React,{useState} from "react"
-import { Container, Row, Col, Stack, Button } from "react-bootstrap"
+import { Container, Col, Stack} from "react-bootstrap"
 import {
   
   Form,
   FormGroup,
   FormLabel,
-  FormCheck,
+
   FormControl,
-  FormText,
+
 } from "react-bootstrap";
 import { useMutation, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ function ManageLogin() {
   const [email, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
-  const [name, setName] =useState("")
+ 
 
   
  
@@ -53,6 +53,7 @@ const LOGIN_MUTATION = gql`
   const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
   
   
+  
   const onSubmitHandler = (e) => {
     e.preventDefault()
     if (email && password) {
@@ -62,6 +63,10 @@ const LOGIN_MUTATION = gql`
             console.log(data)
             localStorage.setItem("AUTH_TOKEN", data.LoginUser.name);
             navigate(`/blogmanager`)
+
+          }
+          if (error) {
+            alert("Invalid email or password")
           }
         })
     }

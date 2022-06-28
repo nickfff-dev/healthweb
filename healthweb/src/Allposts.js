@@ -1,13 +1,11 @@
 import React from "react";
 import { Container, Row, Col, Stack } from "react-bootstrap";
 import { BookmarkFill, ShareFill } from "react-bootstrap-icons";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
 
 
 function Allposts(props) {
 
-  // if (data) return console.log(data)
+
 
   return (
     <Col>
