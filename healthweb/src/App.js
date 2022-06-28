@@ -7,14 +7,23 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BlogManager from './BlogManager';
 import CreatePost from './CreatePost';
 import CreateUser from './CreateUser';
-
+import { useQuery } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client"; 
 import ManageLogin from './ManageLogin';
+import PostPage from './PostPage';
 
 
 function App() {
 
 
+const postsallquery = gql`query PostType{posts{id title body author category createdAt coverImage featured trending}}`
 
+  const createPostLink = (post) => { 
+    const url = encodeURIComponent(post.id)
+    return `/post/${url}`
+  }
+
+  const { loading, error, data } = useQuery(postsallquery);
 
   return (
    
@@ -32,6 +41,13 @@ function App() {
         <Route path="/blogmanager" element={<BlogManager />} />
         <Route path="/manage-login" element={<ManageLogin />} />
         <Route path="/create-user" element={<CreateUser />} />
+        {
+
+          data && data.posts.map(post => {
+            return <Route key={post.id} path={`/post/${post.id}`} element={<PostPage post={post} />} />
+          })
+        }
+
         
           
         </Routes>

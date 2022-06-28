@@ -1,10 +1,15 @@
 import React from "react";
 import { Container, Row, Col, Stack } from "react-bootstrap";
 import { BookmarkFill, ShareFill } from "react-bootstrap-icons";
+import {Link} from "react-router-dom"
 
 
 function Allposts(props) {
 
+  const createPostLink = (post) => { 
+    const url = encodeURIComponent(post.id)
+    return `/post/${url}`
+  }
 
 
   return (
@@ -37,7 +42,7 @@ function Allposts(props) {
                 <div className="d-flex align-items-center justify-content-around flex-row">
                   <Col>
                     <Stack gap={2}>
-                      <span style={{ color: "#1F3F68", fontWeight: "bold" }}>{ post.author}</span>
+                      <Link to={`/post/${post.id}`}><span style={{ color: "#1F3F68", fontWeight: "bold" }}>{ post.author}</span></Link>
                       <span className="text-mute">{post.createdAt} {Math.ceil( (post.body.trim().split(/\s+/).length)/225)}min read</span>
                    
                     </Stack>
