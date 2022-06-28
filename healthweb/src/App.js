@@ -6,9 +6,10 @@ import Contact from './Contact';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BlogManager from './BlogManager';
 import CreatePost from './CreatePost';
+import CreateUser from './CreateUser';
 
 import ManageLogin from './ManageLogin';
-import ManageRegister from './ManageRegister';
+
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -30,7 +31,8 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blogmanager" element={<BlogManager />} />
         <Route path="/manage-login" element={<ManageLogin />} />
-        <Route path="/manage-register" element={<ManageRegister />} />
+        <Route path="/create-user" element={<CreateUser />} />
+        
           
         </Routes>
        

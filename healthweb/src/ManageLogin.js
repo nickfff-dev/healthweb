@@ -1,4 +1,4 @@
-import React,{useState, useNavigate} from "react"
+import React,{useState} from "react"
 import { Container, Row, Col, Stack, Button } from "react-bootstrap"
 import {
   
@@ -9,7 +9,9 @@ import {
   FormControl,
   FormText,
 } from "react-bootstrap";
-import axios from "axios"
+import { useMutation, gql } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -19,11 +21,14 @@ import axios from "axios"
 
 function ManageLogin() {
 
-  const [username, setUsername] = useState("")
+  const [email, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+  const [name, setName] =useState("")
 
+  
  
-  const onUsernameChange = (event) => { 
+  const onEmailChange = (event) => { 
     setUsername(event.target.value)
   }
 
@@ -33,16 +38,38 @@ function ManageLogin() {
   
 
 
+
+const LOGIN_MUTATION = gql`
+  mutation LoginUser(
+    $email: String!
+    $password: String!
+  ) {
+    LoginUser(email: $email, password: $password) {
+      name email signedIn
+    }
+  }
+`;
+  
+  const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
+  
+  
   const onSubmitHandler = (e) => {
-    const data = {
-      username: username,
-      password: password
-}
+    e.preventDefault()
+    if (email && password) {
+      login({ variables: { email, password } }).
+        then(({ data }) => { 
+          if (data) {
+            console.log(data)
+            localStorage.setItem("AUTH_TOKEN", data.LoginUser.name);
+            navigate(`/blogmanager`)
+          }
+        })
+    }
 
-    
+  }
 
-   
-}
+
+
 
 
 
@@ -52,15 +79,20 @@ function ManageLogin() {
 
     <Container fluid className="w-50 mt-5 postform ">
      
-      <Form className="mx-auto w-50" method= "POST" >
+      <Form className="mx-auto w-50" onSubmit={onSubmitHandler} >
         
-        <h5 className="text-center">Manage Login</h5>
+        <h5 className="text-center">signin</h5>
         <Stack gap={5}>
+
+         
+
+
+
           <Col>
             <Container>
               <FormGroup>
-                <FormLabel>Username</FormLabel>
-                <FormControl type="text" placeholder="Enter Username" onChange={onUsernameChange} value={username} />
+                <FormLabel>Email</FormLabel>
+                <FormControl type="text" placeholder="Enter Email" onChange={onEmailChange} value={email} />
               </FormGroup>
             </Container>
           </Col>
@@ -73,7 +105,14 @@ function ManageLogin() {
               </FormGroup>
             </Container>
           </Col>
-          <Row className="mx-auto"><input className="btn-lg" type="submit" value="submit" onSubmit= {onSubmitHandler}/></Row>
+          <Col className="mx-auto">
+            <input className="btn-lg" value="submit" type="submit" />
+              
+            
+
+            
+            
+          </Col>
         </Stack>
       </Form>
     </Container>

@@ -13,6 +13,18 @@ const {
   GraphQLSchema,
 } = require("graphql");
 
+const UserType = new GraphQLObjectType({
+  name: "User",
+  fields: () => ({
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+    password: { type: GraphQLString },
+    posts: {
+      type: new GraphQLList(PostType),
+    }
+  })
+})
+
 const PostType = new GraphQLObjectType({
   name: "Post",
   fields: () => ({
@@ -27,6 +39,7 @@ const PostType = new GraphQLObjectType({
     coverImage: { type: GraphQLString },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString },
+    user: {type : UserType},
   }),
 });
 
@@ -68,8 +81,8 @@ const QueryType = new GraphQLObjectType({
         return posts;
         
       }
-    },
-    
+    }
+
   })
 
 });
@@ -125,13 +138,56 @@ const MutationType = new GraphQLObjectType({
         } 
         // update post field depending on the arg pased
         Post.findOneAndUpdate({ id: args.id }, { $set: args }, { new: true }).exec();
-        return post
-       
-
-       
+        return post  
 
       }
+    },
+    SignupUser: {
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      type: UserType,
+      resolve: (root, args) => { 
+        const user = new User(args);
+        user.save();
+        return user;
+      }
+    },
+    LoginUser: {
+      args: {
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      type: UserType,
+      resolve: (root, args) => { 
+        const user = User.findOne({ email: args.email, password: args.password })
+       
+        if (!user) {
+          throw new Error("User not found");
+        }
+         User.findOneAndUpdate({ email: args.email, password: args.password }, { $set: { signedIn: true } }, { new: true }).exec();
+        return user;
+      }
+    },
+    LogoutUser: {
+      args: {
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      type: UserType,
+      resolve: (root, args) => { 
+        const user = User.findOne({ email: args.email, password: args.password })
+        if (!user) {
+          throw new Error("User not found");
+        }
+        User.findOneAndUpdate({ email: args.email, password: args.password }, { $set: { signedIn: false } }, { new: true }).exec();
+        return user;
+      }
     }
+
+
   })
 })
 
