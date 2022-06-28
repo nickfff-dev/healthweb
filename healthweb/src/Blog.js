@@ -11,9 +11,30 @@ import { gql, useMutation } from "@apollo/client";
 
 
 function Blog(props) {
+  const [catToRender, setCatToRender] = useState("");
+
+  // const { data } = useQuery(gql`query PostType{posts{id title author category coverImage updatedAt createdAt featured trending body}}`)
+
+  const categoryQuery = gql`query singlecategory($category: String!){singlecategory(category:$category)
+    {id title body author category createdAt coverImage featured trending}}`
+  
+  const { loading, error, data, refetch } = useQuery(categoryQuery, {
+    variables: { category: catToRender },
+    })
+
+  useEffect(() => { 
+    if (data) {
+      console.log(data)
+    }
+
+  }, [])
+  
 
 
-  const { data } = useQuery(gql`query PostType{posts{id title author category coverImage updatedAt createdAt featured trending body}}`)
+  
+
+
+
 
 
 
@@ -28,12 +49,25 @@ function Blog(props) {
     <div className="row flex-nowrap">
         <div className="col-sm-2 col-auto px-0 collapse collapse-horizontal overflow-hidden" id="sidebar">
             <div className="list-group border-0 text-center text-sm-start min-vh-100" id="sidebar-menu">
-            <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><JournalMedical/> <span className="d-none d-sm-inline">All Posts</span> </a>
-                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><BasketFill/>  <span className="d-none d-sm-inline">Nutrition</span> </a>
-                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><HospitalFill/> <span className="d-none d-sm-inline">Well Being</span></a>
-                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><HeartPulseFill/> <span className="d-none d-sm-inline">Mental Health</span></a>
+              <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar" onClick={
+                () => refetch({category:  "" })
+            }><JournalMedical/> <span className="d-none d-sm-inline">All Posts</span> </a>
+                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar" onClick={
+                () => refetch({category:  "Nutrition" })
+            }><BasketFill/>  <span className="d-none d-sm-inline">Nutrition</span> </a>
+              <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"
+              onClick={
+                () => refetch({category:  "Well Being" })
+            }><HospitalFill /> <span className="d-none d-sm-inline">Well Being</span></a>
+              <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"
+              onClick={
+                () => refetch({category:  "Mental Health" })
+            }><HeartPulseFill /> <span className="d-none d-sm-inline">Mental Health</span></a>
 
-                <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><AwardFill/> <span className="d-none d-sm-inline">Product Reviews</span></a>
+              <a href="#" className="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar"
+              onClick={
+                () => refetch({category:  "Product Review" })
+            }><AwardFill /> <span className="d-none d-sm-inline">Product Reviews</span></a>
             </div>
         </div>
         <main className="col-sm col border-start ps-md-2 pt-2">

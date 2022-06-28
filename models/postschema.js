@@ -74,6 +74,9 @@ const QueryType = new GraphQLObjectType({
       },
       type: new GraphQLList(PostType),
       resolve: (root, args) => { 
+        if(args.category === ""){
+          return Post.find({}).exec();  
+        }
         const posts = Post.find(args).exec();
         if (!posts) {
           throw new Error("Error");

@@ -14,7 +14,7 @@ function Allposts(props) {
       <h3 style={{color: "#1F3F68"}}>All posts</h3>
       <Col>
         <div className="d-flex flex-column justify-content-evenly">
-          { props.data && props.data.posts.map(post => {
+          { props.data && props.data.singlecategory.map(post => {
           return(          <Container key={post.id} style={{padding: "2rem 4rem 4rem"}}>
           <div className="d-flex flex-row align-items-end justify-content-between">
            
