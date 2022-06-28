@@ -12,7 +12,11 @@ import { gql, useMutation } from "@apollo/client";
 
 
 function Home(props) {
-  const { data } = useQuery(gql`query PostType{posts{id title author category coverImage updatedAt createdAt featured trending body}}`)
+  const categoryQuery = gql`query singlecategory($category: String!){singlecategory(category:$category)
+    {id title body author category createdAt coverImage featured trending}}`
+    const { loading, error, data } = useQuery(categoryQuery, {
+      variables: { category: "" },
+      })
   return (
     <Col>
       <Header />
@@ -24,7 +28,7 @@ function Home(props) {
         <Explore />
       
      <Container>
-        <BlogPage2 /></Container>
+          <BlogPage2 data={ data} /></Container>
     
         <Container><Allposts data={data} /></Container>
         

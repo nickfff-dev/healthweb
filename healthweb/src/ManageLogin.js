@@ -45,7 +45,7 @@ const LOGIN_MUTATION = gql`
     $password: String!
   ) {
     LoginUser(email: $email, password: $password) {
-      name email signedIn
+      name email
     }
   }
 `;

@@ -74,7 +74,7 @@ function Blog(props) {
              <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" className="border-0 rounded-3 p-1  text-decoration-none"><List size={40} /></a> 
             
           
-            <BlogPage2 />
+            <BlogPage2 data={data} />
             {/* <Allposts data={data} /> */}
 
             {data ?  <Allposts data={data} /> : <p>loading</p>} 
