@@ -64,7 +64,7 @@ function BlogManager() {
   }
 
 
-  const editPost = gql`mutation updatePost($id: String!, $title: String!, $body: String!, $author: String!, $coverImage: String!, $category: String!, $createdAt: String!, $trending: Boolean!, $featured: Boolean!) {
+  const editPost = gql`mutation updatePost($id: String!, $title: String!, $body: String!, $author: String!, $coverImage: String!, $category: String!,  $trending: Boolean!, $featured: Boolean!) {
     updatePost(id: $id, title: $title, body: $body, author: $author, coverImage: $coverImage, category: $category, createdAt: $createdAt, trending: $trending, featured: $featured) {
       id title body author coverImage category createdAt trending featured
     }
@@ -72,12 +72,7 @@ function BlogManager() {
 
   const [updatePost,{ loading, error }] = useMutation(editPost)
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    updatePost({ variables: { ...newPost } });
-
-
-  }
+ 
   useEffect(() => {  
     const mtu = localStorage.getItem("AUTH_TOKEN")
     console.log(`mtu: ${mtu}`)
@@ -128,10 +123,16 @@ function BlogManager() {
          <Stack gap={5}>
            <Col>
              <Container fluid className="px-3 mt-5 postform">
-               <h4 className="text-center">Post Editor</h4>
-               <Form className="w-100"  onSubmit={onSubmitHandler}>
+                <h4 className="text-center">Post Editor</h4>
+                <div className="d-flex flex-row align-items-center justify-content-between">
+                <Form  onSubmit={() => {
+                  updatePost({ variables: { id: newPost.id, trending: newPost.trending,
+                  } })
+
+                  
+               }}>
                  <h5 className="text-center">Post ID Title</h5>
-                 <Row>
+                 
                   
                   
                    <Col>
@@ -146,8 +147,16 @@ function BlogManager() {
                          onChange={onTrendingChange} />
                        
                      </FormGroup>
-                   </Col>
-                   
+                  </Col>
+                  <Container><input type="submit" value="submit"/></Container>
+                    </Form>
+                    
+                    
+                   <Form onSubmit={() => {
+                  updatePost({variables: {id: newPost.id, featured: newPost.featured} })
+
+                  
+               }}>
                    <Col>
                      {" "}
                      <FormGroup>
@@ -161,13 +170,27 @@ function BlogManager() {
                        
                        
                      </FormGroup>{" "}
-                   </Col>
+                  </Col>
+                  <Container><input type="submit" value="submit"/></Container>
+                   </Form>
+                <Form onSubmit={() => {
+                  updatePost({variables: {id: newPost.id, title:newPost.title} })
+
+                  
+               }}>
                    <Col>
                      <FormGroup>
                        <FormLabel>Title</FormLabel>
                        <FormControl type="text" placeholder="Enter Title" value={newPost.title}  onChange={onTitleChange} />
                      </FormGroup>
-                   </Col>
+                  </Col>
+                  <Container><input type="submit" value="submit"/></Container>
+                   </Form>
+                <Form onSubmit={() => {
+                  updatePost({ variables: { id: newPost.id, category: newPost.category } })
+
+                  
+               }}>
                    <Col>
                      {" "}
                      <FormGroup>
@@ -178,8 +201,16 @@ function BlogManager() {
                          <option value="Well Being">Well Being</option>
                          <option value="Product Review">Product Review</option>
                        </FormControl>
-                     </FormGroup>{" "}
+                    </FormGroup>{" "}
+                    <Container><input type="submit" value="submit"/></Container>
                    </Col>
+                   </Form>
+                <Form onSubmit={() => {
+                  updatePost({variables: {id: newPost.id, coverImage:newPost.coverImage} })
+
+                  
+               }}>
+                
                    <Col>
                      {" "}
                      <FormGroup>
@@ -187,9 +218,17 @@ function BlogManager() {
                        <FormControl type="text" placeholder="Enter Image URL" onChange={onCoverImageChange} value={newPost.coverImage} />
                      </FormGroup>
                      {" "}
-                   </Col>
-                   
-                 </Row>
+                  </Col>
+                  <Container><input type="submit" value="submit"/></Container>
+                    </Form>
+                   </div>
+                 
+                <Row>
+                <Form onSubmit={() => {
+                  updatePost({variables: {id: newPost.id,body:newPost.body} })
+
+                  
+               }}>
                  <Row className="mt-3 w-50 mx-auto">
                    <Col>
                      <Container>
@@ -197,12 +236,14 @@ function BlogManager() {
                        <FormLabel>Body</FormLabel>
                        <FormControl as={Editor} value={newPost.body}  onChange={onBodyChange} />
                      </FormGroup>
-                       <Container><Button className="postbtn mt-5">Submit</Button></Container>
+                       <Container><input type="submit" value="submit"/></Container>
                        </Container>
                    </Col>
                    </Row>
+                </Form>
+           </Row>
                     
-               </Form>
+              
              </Container>
            </Col>
    
