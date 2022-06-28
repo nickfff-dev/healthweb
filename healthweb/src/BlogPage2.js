@@ -40,10 +40,10 @@ function BlogPage2(props) {
             </Col>
             <Col>
               <img
-                src="https://images.pexels.com/photos/775032/pexels-photo-775032.jpeg?cs=srgb&dl=pexels-element-digital-775032.jpg&fm=jpg"
+                src={post.coverImage}
                 className="img-fluid  rounded-2"
                
-                style={{aspectRatio: "1/1"}}
+                style={{aspectRatio: "1/0.65"}}
               />
             </Col>
           </Row>
