@@ -1,13 +1,13 @@
 import React, { useState} from "react";
-import { Container, Row, Col, Stack, Button } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap"
 import {
   
   Form,
   FormGroup,
   FormLabel,
-  FormCheck,
+
   FormControl,
-  FormText,
+
 } from "react-bootstrap";
 import { useMutation, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
@@ -38,7 +38,7 @@ function CreateUser() {
   }
 `;
 
-  const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION);
+  const [signup] = useMutation(SIGNUP_MUTATION);
   
     const [name, setName] = useState("");
     const [email, setEmail] = useState("")

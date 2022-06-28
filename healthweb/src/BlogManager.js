@@ -4,18 +4,17 @@ import profpic from "./unnamed.webp";
 import {
   Table,
   Nav,
-  NavItem,
-  NavLink,
+
   Navbar,
-  NavText,
+
   Form,
   FormGroup,
   FormLabel,
   FormCheck,
-  FormText,
+
   FormControl,
 } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Editor } from "react-bootstrap-editor";
 import { useQuery } from "@apollo/client";
 import { gql, useMutation } from "@apollo/client"; 
@@ -27,7 +26,7 @@ import ManageLogin from "./ManageLogin";
 function BlogManager() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [postArray, setPostArray] = useState()
+
   const { data } = useQuery(gql`query PostType{posts{id title author category coverImage updatedAt createdAt featured trending body}}`)
 
 
@@ -70,7 +69,7 @@ function BlogManager() {
     }
   }`
 
-  const [updatePost,{ loading, error }] = useMutation(editPost)
+  const [updatePost] = useMutation(editPost)
 
  
   useEffect(() => {  
@@ -91,8 +90,8 @@ function BlogManager() {
                    src={profpic}
                    width="50px"
                    height="50px"
-                   className="img-fluid rounded"
-                 />
+                    className="img-fluid rounded"
+                    alt="sema"                 />
                </Navbar.Brand>
                
                <Nav className="me-auto text-white">

@@ -43,7 +43,8 @@ function BlogPage2(props) {
                 src={post.coverImage}
                 className="img-fluid  rounded-2"
                
-                style={{aspectRatio: "1/0.65"}}
+                    style={{ aspectRatio: "1/0.65" }}
+                    alt={`${post.title}`}
               />
             </Col>
           </Row>
@@ -60,9 +61,10 @@ function BlogPage2(props) {
               return (
                 <Col key={post.id} className="px-3">
             <img
-              src={post.coverImage}
-              className="img-fluid  rounded-2 mb-3"
-              style={{aspectRatio: "1/0.65"}}
+                    src={post.coverImage}
+                    className="img-fluid  rounded-2 mb-3"
+                    style={{ aspectRatio: "1/0.65" }}
+                    alt={`${post.title}`}
             />
             <h2 style={{color: "#1F3F68"}}>{post.title}</h2>
             <p>

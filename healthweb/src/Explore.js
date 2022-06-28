@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { ChatRight } from "react-bootstrap-icons";
+import { Container } from "react-bootstrap";
+
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import "./Explore.css";
 
@@ -27,19 +27,19 @@ function Explore() {
     <div className="box box-down cyan">
       <h2>Nutrition</h2>
       <p>Food and Eating Habits</p>
-      <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/000000/external-nutrition-dieting-flaticons-flat-flat-icons-3.png" alt=""/>
+      <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/000000/external-nutrition-dieting-flaticons-flat-flat-icons-3.png" alt="nutriiton"/>
     </div>
 
     <div className="box red">
       <h2>Mental Health</h2>
       <p>Counselling Yoga Therapy</p>
-      <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/000000/external-mental-health-new-normal-flaticons-flat-flat-icons.png" alt=""/>
+      <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/000000/external-mental-health-new-normal-flaticons-flat-flat-icons.png" alt="mental"/>
     </div>
 
     <div className="box box-down blue">
       <h2>Well Being</h2>
       <p>Fitness Sleep</p>
-      <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/000000/external-wellbeing-comfort-flaticons-flat-flat-icons.png" alt=""/>
+      <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/000000/external-wellbeing-comfort-flaticons-flat-flat-icons.png" alt="wellbeing"/>
         </div>
         
       </div>
@@ -48,7 +48,7 @@ function Explore() {
     <div className="box orange">
       <h2>Product Reviews</h2>
       <p>Regularly evaluates quality products</p>
-      <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/60/000000/external-review-social-media-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png" alt=""/>
+      <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/60/000000/external-review-social-media-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png" alt="products"/>
     </div>
       </div>
       

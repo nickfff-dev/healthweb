@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Home from './Home';
 import "./App.css"
 import Blog from './Blog';
@@ -8,7 +8,7 @@ import BlogManager from './BlogManager';
 import CreatePost from './CreatePost';
 import CreateUser from './CreateUser';
 import { useQuery } from "@apollo/client";
-import { gql, useMutation } from "@apollo/client"; 
+import { gql} from "@apollo/client"; 
 import ManageLogin from './ManageLogin';
 import PostPage from './PostPage';
 
@@ -18,12 +18,9 @@ function App() {
 
 const postsallquery = gql`query PostType{posts{id title body author category createdAt coverImage featured trending}}`
 
-  const createPostLink = (post) => { 
-    const url = encodeURIComponent(post.id)
-    return `/post/${url}`
-  }
+  
 
-  const { loading, error, data } = useQuery(postsallquery);
+  const {  data } = useQuery(postsallquery);
 
   return (
    

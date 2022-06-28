@@ -1,20 +1,17 @@
 import React from "react";
 import {
   Container,
-  Row,
+
   Col,
   Button,
-  Stack,
-  Collapse,
-  InputGroup,
+
   Form,
   FormControl,
   FormGroup,
   FormLabel,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Footer from "./Footer";
-import frontimg from "./Mask Group.svg";
+
 import contactimg from "./contactimg.svg";
 import { TelephoneFill, Globe2, EnvelopeFill } from "react-bootstrap-icons";
 import Header from "./Header";

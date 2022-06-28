@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Col, Stack } from "react-bootstrap"
+import { Container} from "react-bootstrap"
 import Footer from "./Footer"
 import Header from "./Header"
 
@@ -18,7 +18,7 @@ function PostPage(props) {
                             <img src={props.post.coverImage} alt="" className="img-fluid"/>
                         </div>
                         <div className="article-title">
-                            <h1><a href="#">{props.post.title}</a></h1>
+                            <h1><span >{props.post.title}</span></h1>
                            
                             <div className="media">
                                 <div className="avatar">

@@ -50,15 +50,15 @@ const LOGIN_MUTATION = gql`
   }
 `;
   
-  const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
+  const [login, { error }] = useMutation(LOGIN_MUTATION);
   
   
   
   const onSubmitHandler = (e) => {
     e.preventDefault()
     if (email && password) {
-      login({ variables: { email, password } }).
-        then(({ data }) => { 
+      login({ variables: { email, password } })
+        .then(({ data }) => { 
           if (data) {
             console.log(data)
             localStorage.setItem("AUTH_TOKEN", data.LoginUser.name);

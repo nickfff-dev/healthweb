@@ -1,20 +1,18 @@
 import React, { useState } from "react";
-import { Container, Col, Row, Stack, Button } from "react-bootstrap";
+import { Container, Col, Row, Stack } from "react-bootstrap";
 import profpic from "./unnamed.webp";
 import {
-  Table,
+  
   Nav,
-  NavItem,
-  NavLink,
+ 
   Navbar,
   Form,
   FormGroup,
   FormLabel,
-  FormCheck,
-  FormText,
+  
   FormControl,
 } from "react-bootstrap";
-import { useQuery } from "@apollo/client";
+
 import { gql, useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from 'uuid'
 
@@ -83,6 +81,7 @@ const now = new Date().toISOString().split('T')[0];
                 width="50px"
                 height="50px"
                 className="img-fluid rounded"
+                alt="goodboy"
               />
             </Navbar.Brand>
             <Nav className="me-auto text-white">

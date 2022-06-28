@@ -1,15 +1,12 @@
 import React from "react";
-import { Container, Row, Col, Stack } from "react-bootstrap";
+import { Container, Col, Stack } from "react-bootstrap";
 import { BookmarkFill, ShareFill } from "react-bootstrap-icons";
 import {Link} from "react-router-dom"
 
 
 function Allposts(props) {
 
-  const createPostLink = (post) => { 
-    const url = encodeURIComponent(post.id)
-    return `/post/${url}`
-  }
+
 
 
   return (
@@ -26,7 +23,8 @@ function Allposts(props) {
                 src={post.coverImage}
                 style={{ aspectRatio: "1/0.65" }}
                 width="500px"
-                height="300px"
+                  height="300px"
+                  alt={`${post.title}`}
                 
                   className="img-fluid  rounded-3"
                 />
