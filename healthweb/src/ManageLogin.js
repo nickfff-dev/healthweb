@@ -10,7 +10,8 @@ import {
 
 } from "react-bootstrap";
 import { useMutation, gql } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+
 
 
 
@@ -112,6 +113,7 @@ const LOGIN_MUTATION = gql`
           </Col>
           <Col className="mx-auto">
             <input className="btn-lg" value="submit" type="submit" />
+            <span><Link to="/create-user" >Signup</Link></span>
               
             
 

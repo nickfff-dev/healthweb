@@ -26,28 +26,37 @@ import ManageLogin from "./ManageLogin";
 function BlogManager() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  
+  const [coverImage, setCoverImage] = useState("");
+  const [category, setCategory] = useState("");
+  const[id, setId] = useState("");
+ 
+  const [trending, setTrending] = useState(false);
+  const[featured, setFeatured] = useState(false);
+
 
   const { data } = useQuery(gql`query PostType{posts{id title author category coverImage updatedAt createdAt featured trending body}}`)
 
 
-  const [newPost, setNewPost] = useState({});
 
   const onTitleChange = (e) => {
-    setNewPost({ ...newPost, title: e.target.value });
+   setTitle(e.target.value);
   }
 
 
   
 
   const onCoverImageChange = (e) => {
-    setNewPost({ ...newPost, coverImage: e.target.value });
+    setCoverImage(e.target.value);
   }
   const onCategoryChange = (e) => {
-    setNewPost({ ...newPost, category: e.target.value });
+    setCategory(e.target.value);
   }
 
   const onBodyChange = (Editor) => {
-    setNewPost({ ...newPost, body: Editor.value })
+    setBody(Editor);
     
     
   }
@@ -55,11 +64,11 @@ function BlogManager() {
 
 
   const onTrendingChange = (e) => { 
-    setNewPost({ ...newPost, trending: e.target.checked });
+    setTrending(e.target.checked);
   }
  
   const onFeaturedChange = (e) => { 
-    setNewPost({ ...newPost, featured: e.target.checked });
+    setFeatured(e.target.checked);
   }
 
 
@@ -125,7 +134,7 @@ function BlogManager() {
                 <h4 className="text-center">Post Editor</h4>
                 <div className="d-flex flex-row align-items-center justify-content-between">
                 <Form  onSubmit={() => {
-                  updatePost({ variables: { id: newPost.id, trending: newPost.trending,
+                  updatePost({ variables: { id: id, trending: trending,
                   } })
 
                   
@@ -152,7 +161,7 @@ function BlogManager() {
                     
                     
                    <Form onSubmit={() => {
-                  updatePost({variables: {id: newPost.id, featured: newPost.featured} })
+                  updatePost({variables: {id:id, featured: featured} })
 
                   
                }}>
@@ -173,20 +182,20 @@ function BlogManager() {
                   <Container><input type="submit" value="submit"/></Container>
                    </Form>
                 <Form onSubmit={() => {
-                  updatePost({variables: {id: newPost.id, title:newPost.title} })
+                  updatePost({variables: {id: id, title:title} })
 
                   
                }}>
                    <Col>
                      <FormGroup>
                        <FormLabel>Title</FormLabel>
-                       <FormControl type="text" placeholder="Enter Title" value={newPost.title}  onChange={onTitleChange} />
+                       <FormControl type="text" placeholder="Enter Title" value={title}  onChange={onTitleChange} />
                      </FormGroup>
                   </Col>
                   <Container><input type="submit" value="submit"/></Container>
                    </Form>
                 <Form onSubmit={() => {
-                  updatePost({ variables: { id: newPost.id, category: newPost.category } })
+                  updatePost({ variables: { id: id, category: category } })
 
                   
                }}>
@@ -194,7 +203,7 @@ function BlogManager() {
                      {" "}
                      <FormGroup>
                        <FormLabel>Category</FormLabel>
-                       <FormControl as="select" onChange={onCategoryChange} value={newPost.category}>
+                       <FormControl as="select" onChange={onCategoryChange} value={category}>
                          <option value="Nutrition">Nutrition</option>
                          <option value="Mental Health">Mental Health</option>
                          <option value="Well Being">Well Being</option>
@@ -205,7 +214,7 @@ function BlogManager() {
                    </Col>
                    </Form>
                 <Form onSubmit={() => {
-                  updatePost({variables: {id: newPost.id, coverImage:newPost.coverImage} })
+                  updatePost({variables: {id: id, coverImage:coverImage} })
 
                   
                }}>
@@ -214,7 +223,7 @@ function BlogManager() {
                      {" "}
                      <FormGroup>
                        <FormLabel>Image</FormLabel>
-                       <FormControl type="text" placeholder="Enter Image URL" onChange={onCoverImageChange} value={newPost.coverImage} />
+                       <FormControl type="text" placeholder="Enter Image URL" onChange={onCoverImageChange} value={coverImage} />
                      </FormGroup>
                      {" "}
                   </Col>
@@ -224,7 +233,7 @@ function BlogManager() {
                  
                 <Row>
                 <Form onSubmit={() => {
-                  updatePost({variables: {id: newPost.id,body:newPost.body} })
+                  updatePost({variables: {id:id,body:body} })
 
                   
                }}>
@@ -233,7 +242,7 @@ function BlogManager() {
                      <Container>
                      <FormGroup className="text-center">
                        <FormLabel>Body</FormLabel>
-                       <FormControl as={Editor} value={newPost.body}  onChange={onBodyChange} />
+                       <FormControl as={Editor} value={body}  onChange={onBodyChange} />
                      </FormGroup>
                        <Container><input type="submit" value="submit"/></Container>
                        </Container>
@@ -279,7 +288,16 @@ function BlogManager() {
                            <td>{post.category}</td>
                            <td>
                              <Button variant="primary" className="btn-lg bg-dark text-white" onClick={() => { 
-                               setNewPost({ ...post })
+                               setId(post.id)
+                               setTitle(post.title)
+                               setBody(post.body)
+                               setCoverImage(post.coverImage)
+                               setCategory(post.category)
+                               setTrending(post.trending)
+                               setFeatured(post.featured)
+                               
+                               
+                               
                              }}></Button>
                            </td>
                            

@@ -68,6 +68,7 @@ const now = new Date().toISOString().split('T')[0];
     if (loading) return 'Submitting...';
     if (error) return `Submission error! ${error.message}`;
     if (data) return `Submission success! ${data.createPost.title}`;
+    setNewPost({ ...newPost, title: "", body: "", author: "", coverImage: "", category: "", createdAt:"" })
   }
 
   return (
